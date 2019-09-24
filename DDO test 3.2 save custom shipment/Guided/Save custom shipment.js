@@ -4,7 +4,7 @@
     }
     if (!window.saveShippingInfoExecuted) {
         document.addEventListener("click", function clickHandler(event) {
-            if (event.target.id == "nbsBackForwardNavigationPayAndGetLabelsButton") {
+            if (event.target.id == "nbsBackForwardNavigationPayAndGetLabelsButton" && !document.querySelector('#ewsSimpleRateCancelBannerText')) {
                 updateShippingInformation();
             }
         }, true);

@@ -33,7 +33,9 @@
             var pk = document.querySelector("package");
             if (pk) {
                 setTimeout(function () {
-                    init();
+                    if(!document.querySelector('#ewsSimpleRateCancelBannerText')) {
+                      init();   
+                    }                   
                 }, 200);
             }
         }
