@@ -33,7 +33,7 @@
             var pk = document.querySelector("package");
             if (pk) {
                 setTimeout(function () {
-                    var packagingDropdown = document.querySelector('#nbsPackagePackagingTypeDropdown0');
+                    var packagingDropdown = document.querySelector('select[id^=nbsPackagePackagingTypeDropdown]');
                     if (!document.querySelector('#ewsSimpleRateCancelBannerText') && packagingDropdown) {
                         if (packagingDropdown.selectedOptions[0].innerText === 'My Packaging') {
                             init();

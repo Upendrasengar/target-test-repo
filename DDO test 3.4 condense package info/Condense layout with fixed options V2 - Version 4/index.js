@@ -119,7 +119,7 @@
     package.custom-package .custom-head-row{\
        display:block;\
     }\
-    .ups-application_wrapper .ups-lever .ups-lever_rlabel {\
+    .ups-section.other-options .ups-lever .ups-lever_rlabel {\
        margin-left: 0px !important;\
    }\
    \
