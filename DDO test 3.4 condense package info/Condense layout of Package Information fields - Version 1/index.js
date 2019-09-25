@@ -1,14 +1,14 @@
 (function () {
     if (!window.hasCondensingTestExecuted) {
-        var css = '<style>\
-        package.custom-package section > div.panel-body > div.row:first-child {\
+        var css = '<style id="custom-package-css">\
+        package.custom-package section > div.panel-body > div:nth-child(2) {\
             background: #5E544B;\
             color: #fff !important;\
             padding-top: 10px;\
             padding-bottom: 10px;\
         }\
        \
-        package.custom-package section > div.panel-body > div.row:first-child label span{\
+        package.custom-package section > div.panel-body > div:nth-child(2) label span{\
             color:#fff;\
         }\
        \
@@ -82,7 +82,7 @@
            margin-top: 15px;\
         }\
        \
-        package.custom-package > section > div.panel-body > div:nth-child(1) > div:nth-child(2){\
+        package.custom-package > section > div.panel-body > div:nth-child(2) > div:nth-child(2){\
            float: right;\
         }\
         package.custom-package > section > div.panel-body > div.ups-form_group{\
@@ -148,10 +148,10 @@
            display:block !important;\
        }\
        package.custom-package .ups-accordion_wrapper button:not(.ups-active) span.close-title{\
-           display:block !important;\
+            display:block !important;\
        }\
        package.custom-package .ups-lever.ups-checkbox-custom-label{\
-         width:100%;\
+            width:100%;\
        }\
        package.custom-package .ups-accordion_expand {\
            padding: 15px !important;\
@@ -185,12 +185,14 @@
         }\
         </style>\
         ';
-        $("head").append(css);
+        // $("head").append(css);
         try {
             updatePackageInfo();
         } catch (e) { }
         function updatePackageInfo() {
+            $("#custom-package-css").remove();
             if (!document.querySelector("#ewsSimpleRateCancelBannerText")) {
+                $("head").append(css);
                 $("package.custom-package").removeClass("custom-package");
                 $("#nbsShipmentPackagesAddAnotherPackage").removeClass("ups-cta_secondary");
                 if (!$("package div.row.custom-row").length) {
@@ -268,7 +270,6 @@
                 if (~window.location.href.indexOf("ups.com/ship/single-page")) {
                     $("package > section > div.panel-body.ng-star-inserted > div.ups-even.panel-body > div:nth-child(1) > div:nth-child(1) > div > div.col-xs-4").removeClass("col-xs-4").addClass("col-xs-12");
                 }
-
                 $("package input[id^=nbsPackagePackageWeightField]").closest("package").addClass("custom-package");
             }
 
