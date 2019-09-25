@@ -39,7 +39,7 @@
                                 customRadio.remove();
                             }
                         }
-                    }             
+                    }
                 }, 200);
             }
         }
@@ -77,6 +77,8 @@
                     return;
                 }
                 var ind = $(event.target).attr("data-index");
+                shipData = docCookies.getItem("shipData");
+                shipData = JSON.parse(shipData);
                 if (shipData) {
                     var dimensions = shipData[ind];
                     package.find("input[id^=nbsPackagePackageWeightField]").val(+dimensions["we"])[0].dispatchEvent(getEvent());
