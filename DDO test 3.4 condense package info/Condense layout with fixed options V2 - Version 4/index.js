@@ -1,14 +1,14 @@
 (function () {
     if (!window.hasCondensingTestExecuted) {
         var css = '<style id="custom-package-css">\
-    package.custom-package section > div.panel-body > div:nth-child(2) {\
+    .cs-bg {\
         background: #5E544B;\
         color: #fff !important;\
         padding-top: 10px;\
         padding-bottom: 10px;\
     }\
    \
-    package.custom-package section > div.panel-body > div:nth-child(2) label span{\
+   .cs-bg label span{\
         color:#fff;\
     }\
    \
@@ -81,7 +81,7 @@
        margin-top: 15px;\
     }\
    \
-    package.custom-package > section > div.panel-body > div:nth-child(2) > div:nth-child(2){\
+    package.custom-package > section > div.panel-body > .cs-bg > div:nth-child(2){\
        float: right;\
     }\
     package.custom-package > section > div.panel-body > div.ups-form_group{\
@@ -205,6 +205,7 @@
             if (!document.querySelector("#ewsSimpleRateCancelBannerText")) {
                 $("head").append(css);
                 $("package.custom-package").removeClass("custom-package");
+                $("select[id^=nbsPackagePackagingTypeDropdown]").closest(".row").addClass("cs-bg");
                 $("#nbsShipmentPackagesAddAnotherPackage").removeClass("ups-cta_secondary");
                 if (!$("package div.row.custom-row").length) {
                     $("[id^=nbsPackageShipTip]").remove();
