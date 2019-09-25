@@ -29,9 +29,17 @@
             var pk = document.querySelector("package");
             if (pk) {
                 setTimeout(function () {
-                    if(!document.querySelector('#ewsSimpleRateCancelBannerText')) {
-                      init();   
-                    }                   
+                    var packagingDropdown = document.querySelector('#nbsPackagePackagingTypeDropdown0');
+                    if (!document.querySelector('#ewsSimpleRateCancelBannerText') && packagingDropdown) {
+                        if (packagingDropdown.selectedOptions[0].innerText === 'My Packaging') {
+                            init();
+                        } else {
+                            var customRadio = document.querySelector("#recent-packages-form");
+                            if (customRadio) {
+                                customRadio.remove();
+                            }
+                        }
+                    }             
                 }, 200);
             }
         }
