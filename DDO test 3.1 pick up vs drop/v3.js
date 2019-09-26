@@ -65,7 +65,7 @@
                 }
 
                 var poll = function () {
-                    console.debug("Polling for pricebar");
+                    // console.debug("Polling for pricebar");
                     var priceBar = document.getElementById("nbsBalanceBarTotalCharges");
                     if (priceBar) {
                         setObserverForPriceChange();
@@ -78,12 +78,12 @@
 
                 function setObserverForPriceChange() {
                     window.resetCounter = 1;
-                    console.debug("Called setObserverForPriceChange")
+                    // console.debug("Called setObserverForPriceChange")
                     window.pcMt = new MutationObserver(function (mList, newObserver) {
                         //Run as soon as available in DOM
                         try {
                             window.resetCounter = 1;
-                            console.debug("MO running Update pickup date");
+                            // console.debug("MO running Update pickup date");
                             pickupDate();
                         } catch (e) {
                             console.error(e);
@@ -149,10 +149,10 @@
                         $(divs[0]).before(divs[1]);
                 }
             } catch (e) {
-                console.debug(e);
+                // console.debug(e);
             }
 
-            console.debug("function called pickupDate");
+            // console.debug("function called pickupDate");
             // simulating click on expand button to expand
             $('#nbsBalanceBarExpandButton').trigger("click");
             $("#nbsBalanceBarBody").css("display", "none");
@@ -163,7 +163,7 @@
                 // extracting pickupCharges
                 pickupCharges = ele.innerText;
                 // window.pickupCharges = (ele && ele.innerText) || window.pickupCharges;
-                console.debug(pickupCharges);
+                // console.debug(pickupCharges);
                 // $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span").text("Schedule a pick-up (+" + pickupCharges + ")");
                 $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up <span class='cust-message'>SAVE " + pickupCharges + "</span>");
             } else {
@@ -177,7 +177,7 @@
             setTimeout(function () {
                 var isChecked = $("#nbsShipmentServicesDropOffPickupViewToggleOption2InputId").is(":checked");
                 if (isChecked && pickupCharges == null && window.resetCounter <= 10) {
-                    console.debug("Again called pickup date because schedule is checked and price not found");
+                    // console.debug("Again called pickup date because schedule is checked and price not found");
                     window.resetCounter++;
                     pickupDate();
                 }
