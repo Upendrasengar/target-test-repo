@@ -333,6 +333,15 @@
                 }
             });
 
+            $("#nbsReferenceNumbersBaseOptionSwitch").closest("common-switch").find("input").each(function (ind, ele) {
+                var input = ele;
+                if (!$(input).closest("label").hasClass("ups-checkbox-custom")) {
+                    $(input).addClass("ups-checkbox-custom").closest(".ups-toggle_listItem").addClass("ups-toggle_listItem ups-checkbox ups-input_wrapper");
+                    $(input).closest("label").addClass("ups-checkbox-custom-label").find(".ups-lever_switch").remove();
+                    $(input).prependTo($(input).closest("common-switch"));
+                }
+            });
+
             //For single-page view -- adding unit (in) after every dimension
             if (~window.location.href.indexOf("ups.com/ship/single-page")) {
                 var dimRow = $("package input[id^=nbsPackagePackageLengthField]").closest("div.row");
