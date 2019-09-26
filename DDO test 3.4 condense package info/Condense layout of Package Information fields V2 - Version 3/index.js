@@ -74,7 +74,7 @@
      package.custom-package > section > div.panel-body > div.ups-even.panel-body .ups-help button:before {\
         top: 2.5px !important;\
      }\
-     .ups-application_wrapper .ups-input_has_unit.ups-help_wrapper .ups-help_link {\
+     package-options .ups-input_has_unit.ups-help_wrapper .ups-help_link {\
         right: 0px !important;\
      }\
      package.custom-package > section > div.panel-body > div.ups-even.panel-body{\

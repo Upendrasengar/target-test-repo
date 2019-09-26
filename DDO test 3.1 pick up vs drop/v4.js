@@ -104,6 +104,9 @@
                 } catch (e) {
 
                 }
+                if (window.hasTestDefaultSelected && !window.userClickForDrop && $("#nbsShipmentServicesDropOffPickupViewToggleOption2InputId").length && !$("#nbsShipmentServicesDropOffPickupViewToggleOption2InputId").is(":checked")) {
+                    $("#nbsShipmentServicesDropOffPickupViewToggleOption2InputId").click();
+                }
                 // console.debug("observer running for condense information");
             }, 0);
         });
@@ -117,15 +120,20 @@
         // mt.observe(document.querySelector("shipment-packages"), { childList: true, subtree: true });
         window.hasGuidedTestExecuted = true;
 
+        $(document).on("click", "#nbsShipmentServicesDropOffPickupViewToggleOption1InputId", stateHandler);
+
+        function stateHandler() {
+            window.userClickForDrop = true;
+        }
+
         //Cancel shipment handler
         document.addEventListener("click", cancelShipmentHandler, true);
 
         function cancelShipmentHandler(event) {
             if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
                 //Since user is cancellling shipment so again select schedule pick up by default as a fresh journey
-                if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
-                    window.hasTestDefaultSelected = false;
-                }
+                window.hasTestDefaultSelected = false;
+                window.userClickForDrop = false;
             }
         }
 
@@ -153,13 +161,13 @@
 
             var ele = document.querySelector('#nbsBalanceBarPickupChargesSubtotals > div > div.col-xs-6.text-right');
             var pickupCharges = null;
-            if (ele || window.pickupCharges) {
+            if (ele) {
                 // extracting pickupCharges
-                pickupCharges = (ele && ele.innerText);
-                window.pickupCharges = (ele && ele.innerText) || window.pickupCharges;
-                console.debug(window.pickupCharges);
+                pickupCharges = ele.innerText;
+                // window.pickupCharges = (ele && ele.innerText) || window.pickupCharges;
+                console.debug(pickupCharges);
                 // $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span").text("Schedule a pick-up (+" + pickupCharges + ")");
-                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up <span class='cust-message'>-" + window.pickupCharges + "</span>");
+                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up <span class='cust-message'>-" + pickupCharges + "</span>");
             } else {
                 $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up");
             }
