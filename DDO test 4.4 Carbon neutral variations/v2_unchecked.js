@@ -1,5 +1,8 @@
 (function() {
     if (!window.carbonNeutralVariation) {
+		if (window.NodeList && !NodeList.prototype.forEach) {
+			NodeList.prototype.forEach = Array.prototype.forEach;
+		}
   		
   		 var css = "<style name='DDO_4.4'>\
                     .icon-leaf {\
@@ -35,7 +38,7 @@
         attachObserver();
 
         function attachObserver() {
-            var target = document.querySelector('#ups-main > div.ups-form_wrap.ups-wrap.ups-application_wrapper.ups-app_nbs > app > ng-component > div > div > div > div');
+			var target = document.querySelector('body');
             var config = {
                 childList: true,
                 attributes: true,
@@ -64,7 +67,7 @@
             var labelNode = node.querySelector("label[class ='ups-lever']");
             if(labelNode){
 				if (node.querySelector("label span[class='ups-lever_switch']")) {
-					node.querySelector("label span[class='ups-lever_switch']").remove();
+					$("label span[class='ups-lever_switch']").remove();
 				}
 				input.classList.add('ups-checkbox-custom');
 				if (labelNode) {				
