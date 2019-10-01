@@ -34,8 +34,6 @@
        
         attachObserver();
 
-        var hasSetEvent = false, hasSelected = null;
-
         function attachObserver() {
             var target = document.querySelector('#ups-main > div.ups-form_wrap.ups-wrap.ups-application_wrapper.ups-app_nbs > app > ng-component > div > div > div > div');
             var config = {
@@ -44,22 +42,12 @@
                 subtree: true
             };
             var callback = function(mutations, observer) {
-                if (document.querySelector("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']")) {					                	
+                if (document.querySelector("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']")) {
                     setTimeout(function() {
-                    	if ($("#nbsCarbonNeutralOptionBaseOptionSwitch").length && hasSelected != $("#nbsCarbonNeutralOptionBaseOptionSwitch").is(":checked")) {
-							$("#nbsCarbonNeutralOptionBaseOptionSwitch").click();
-							hasSelected = true;
-							if (!hasSetEvent) {
-								$(document).on("change", "#nbsCarbonNeutralOptionBaseOptionSwitch", function (e) {
-									hasSelected = e.target.checked;
-								});
-								hasSetEvent = true;
-							}
-						}
                         var nodes = document.querySelectorAll('section common-switch');
                         if (nodes.length > 0) {
                             nodes.forEach(function(node) {
-                                carbonNeutralControlVariation(node);                               
+                                carbonNeutralControlVariation(node);                                
                             });
                         }
                     }, 500);
@@ -90,17 +78,18 @@
 					  $(labelNode).find('switch-header>strong').text('UPS carbon neutral');
 					  var parent = document.querySelector('section > div.ups-toggle_list')	
 					  parent.insertBefore(document.querySelector('carbon-neutral-option') , document.querySelector('saturday-delivery-option'));			 
-					  modifyLabelV1(labelNode);
+					  modifyLabelV2(labelNode);
 				}	
             }          				           
+        }              
+
+		function modifyLabelV2(labelNode) {
+			 $("<span class='icon-leaf'></span>").insertBefore($(labelNode).find('switch-header'));
+             labelNode.getElementsByClassName('ups-form_label')[0].classList.add('form-label-align');            
+			 $("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']").closest('div').addClass('background-add');
+			 $(labelNode).find('switch-header').addClass('switch-header-inline');
         }
-       		
-		function modifyLabelV1(labelNode) {
-			  $("<span class='icon-leaf'></span>").insertBefore($(labelNode).find('switch-header'));
-              labelNode.getElementsByClassName('ups-form_label')[0].classList.add('form-label-align');  
-              $(labelNode).find('switch-header').addClass('switch-header-inline');            
-		}		 
-      	 
+        						 
         window.carbonNeutralVariation = true;
     }
 
