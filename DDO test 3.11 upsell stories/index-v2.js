@@ -21,7 +21,7 @@
         
         .ups-shipping_schedule_when .ups-day_rate label {
             background: #FFF1CC;
-            border: 1px solid #FFF1CC;
+            border: 1px solid #FFF1CC !important;
             text-align: center;
         }
         
@@ -97,7 +97,7 @@
             background: #00867E;
             color: #fff;
             box-shadow: 0px 5px 5px 0px #868484;
-            border-color: #00867E;
+            border-color: #00867E !important;
         }
         
         .ups-shipping_schedule_when .ups-day_rate label {
