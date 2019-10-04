@@ -109,18 +109,24 @@
             padding-bottom: 15px;
         }
         
-        .ups-official_datepicker_container .ups-official_datepicker {
-            position: relative !important;
-            width: 580px;
-            height: 465px;
-        }
-
         .ups-accordion_list {
             margin-bottom: 0px !important;
         }
 
         .row.iw_row .iw_columns.col-lg-12 .ups-accordion_list {
             padding-top: 0px !important;
+        }
+
+        .ups-shipping_schedule_when .ups-shipping_schedule_grid .ups-shipping_schedule_day {
+            font-weight: bold !important;
+        }
+        
+        .ups-shipping_schedule_when .ups-shipping_schedule_grid .ups-shipping_schedule_header_wrap {
+            background-color: transparent !important;
+            color: #000 !important;
+        }
+        label [id^=nbsServiceTileTotalCharge]{
+            font-size:20px;
         }
         </style>`;
 
@@ -212,6 +218,12 @@
                 $Preferred.find("input").attr("id", "cust-input-Preferred").attr("name", "cust-input");
                 $Preferred.find("label").attr("for", "cust-input-Preferred");
                 $(".upsell-tiles").append($Preferred);
+
+                $("label [id^=nbsServiceTileTotalCharge]").each(function(i,e){
+                    var label = $(e).closest("label");
+                    $(e).prependTo(label)
+                });
+
             }, 0);
         }
 
