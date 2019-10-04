@@ -288,12 +288,12 @@
                         dimRow.find("common-input-uom").eq(0).replaceWith(lastUnit.clone());
                         dimRow.find("common-input-uom").eq(1).replaceWith(lastUnit.clone());
                     }
-                } else {					
+                } else {
                     var weightDiv = $("package input[id^=nbsPackagePackageWeightField]").closest(".col-md-6");
                     if (weightDiv.length) {
                         weightDiv.removeClass("col-md-6").addClass("col-md-4");
-                    }                
-				}
+                    }
+                }
                 //For single-page view
                 if (~window.location.href.indexOf("ups.com/ship/single-page")) {
                     $("package > section > div.panel-body.ng-star-inserted > div.ups-even.panel-body > div:nth-child(1) > div:nth-child(1) > div > div.col-xs-4").removeClass("col-xs-4").addClass("col-xs-12");

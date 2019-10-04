@@ -270,12 +270,13 @@
 
                 $("package input[id^=nbsPackagePackageWeightField]").closest("package").addClass("custom-package");
             }
-        } else {					
-					var weightDiv = $("package input[id^=nbsPackagePackageWeightField]").closest(".col-md-6");
-                    if (weightDiv.length) {
-                        weightDiv.removeClass("col-md-6").addClass("col-md-4");
-                    }                
-		}
+            else {
+                var weightDiv = $("package input[id^=nbsPackagePackageWeightField]").closest(".col-md-6");
+                if (weightDiv.length) {
+                    weightDiv.removeClass("col-md-6").addClass("col-md-4");
+                }
+            }
+        }
 
         function updatePackageOptions() {
             $("package-options").find(".ups-lever_label").removeClass("ups-lever_label");
