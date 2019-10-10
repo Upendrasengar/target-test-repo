@@ -27,10 +27,10 @@
             var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+div')[0];
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
-                    var now = new Date();
-                    now.setTime(now.getTime() + 1 * 3600 * 1000);
+                    var expirationTime = new Date();
+                    expirationTime.setTime(expirationTime.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
-                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
+                    docCookies.setItem("selectedTiles", window.selectedTiles, expirationTime.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
                 }
@@ -41,10 +41,10 @@
             var selectedTiles = event.target.parentElement.querySelector('input+div');
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
-                    var now = new Date();
-                    now.setTime(now.getTime() + 1 * 3600 * 1000);
+                    var expirationTime = new Date();
+                    expirationTime.setTime(expirationTime.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
-                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
+                    docCookies.setItem("selectedTiles", window.selectedTiles, expirationTime.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
                 }
