@@ -1,16 +1,20 @@
 (function() {
     if (!window.hasUpSellFlagSet) {
         var mtObserver = new MutationObserver(function(mvt, observer) {
-            setTimeout(function() {                           
+
+            setTimeout(function() {
                 var tiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]');
+                mockScript();
                 if (tiles && tiles.length > 0) {
                     var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked')[0];
                     if (selectedTiles) {
                         setDefaultFlagWithTiles();
                     }
                 }
+
             }, 0);
-        });
+        }
+        );
 
         var config = {
             childlist: true,
@@ -23,7 +27,10 @@
             var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+div')[0];
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
+                    var now = new Date();
+                    now.setTime(now.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
+                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
                 }
@@ -34,7 +41,10 @@
             var selectedTiles = event.target.parentElement.querySelector('input+div');
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
+                    var now = new Date();
+                    now.setTime(now.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
+                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
                 }
@@ -62,22 +72,43 @@
         });
 
         $(document).on("click", "button[id='nbsBackForwardNavigationReviewSecondaryButton']", function(event) {
-             if (!window.selectedTiles) {
+            if (!window.selectedTiles) {
                 setDefaultFlagWithTiles();
             }
 
         });
 
         $(document).on("click", "button[id='nbsBackForwardNavigationPayAndGetLabelsButton']", function(event) {
+            if(!window.selectedTiles) {
+                window.selectedTiles  = docCookies.getItem('selectedTiles');                 
+            }
             if (window.selectedTiles) {
                 utag.link({
                     "service_label": window.selectedTiles,
-                    "link_name": 'Service label selected',
+                    "link_name": window.selectedTiles,
                     "link_page_name": utag.data['new_page_name']
                 });
             }
+
         });
-        
+
+        function mockScript() {
+            var hasAnyTile = $('service-tile').children('#Faster,#Fastest,#Preferred');
+            if (hasAnyTile.length <= 0 && $('service-tile').length > 0) {
+                if ($('service-tile').length > 3) {
+                    $('service-tile')[0].firstElementChild.setAttribute('id', 'Faster');
+                    $('service-tile')[1].firstElementChild.setAttribute('id', 'EvenFaster');
+                    $('service-tile')[2].firstElementChild.setAttribute('id', 'Preferred');
+                }
+                else if ($('service-tile').length > 0 && $('service-tile').length < 2 ) {
+                    $('service-tile')[0].firstElementChild.setAttribute('id', 'Faster');
+                    $('service-tile')[1].firstElementChild.setAttribute('id', 'EvenFaster');                   
+                } else {
+                    $('service-tile')[0].firstElementChild.setAttribute('id', 'Faster');  
+                }
+            }
+        }
+
         window.hasUpSellFlagSet = true;
     }
 }
