@@ -34,8 +34,9 @@
         
         .upsell-tiles > .ups-day_rate {
             width: 300px !important;
-            display: inline-block !important;
             margin-left: 10px !important;
+            width: 33% !important;
+            margin: 1.5% !important;
         }
         
         #EvenFaster.ups-day_rate > input,#Faster.ups-day_rate > input,#Preferred.ups-day_rate > input {
@@ -225,7 +226,7 @@
                 //     var label = $(e).closest("label");
                 //     $(e).prependTo(label)
                 //  });
-                $("label [id^=nbsServiceTileTotalCharge]").each(function(i,e){
+                $("label [id^=nbsServiceTileTotalCharge]").each(function (i, e) {
                     var label = $(e).closest("label");
                     $(e).prependTo(label)
                 });
