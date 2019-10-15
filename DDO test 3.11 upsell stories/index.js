@@ -131,10 +131,16 @@
         label [id^=nbsServiceTileTotalCharge]{
             font-size:20px;
         }
+
+        .upsell-tiles label[for^=cust-input-] p[id^=nbsServiceTileServiceDescription]{
+            font-weight:bold;
+        }
+        .upsell-tiles label[for^=cust-input-] [id^=nbsServiceTileDeliveryDate]{
+            font-weight:100 !important;
+        }
         </style>`;
-
-
-
+        
+        var updateTilesObserver = new MutationObserver(updateTiles);
         var mtObserver = new MutationObserver(function (mvt, observer) {
             setTimeout(function () {
                 var section = document.querySelector("shipment-services > service");
@@ -177,9 +183,9 @@
                         updateTiles();
                         var config = {
                             subtree: true,
+                            childlist: true,
                             attributes: true
                         };
-                        updateTilesObserver = new MutationObserver(updateTiles);
                         updateTilesObserver.observe(section.querySelector("service-grid"), config);
                     }
                 } else {
@@ -190,6 +196,7 @@
                             newParent.appendChild(e);
                         });
                         $("section.ups-accordion_list").remove();
+                        updateTilesObserver.disconnect();
                     }
                 }
             }, 0);
@@ -197,42 +204,88 @@
 
         function updateTiles() {
             console.debug("updateTiles called");
-            $(".thead").remove();
+            // $(".thead").remove();
             setTimeout(function () {
-                $("<div class='thead'>Faster</div>").insertAfter($("#Faster input"));
-                $("<div class='thead'>Fastest</div>").insertAfter($("#EvenFaster input"));
-                $("<div class='thead'>Preferred</div>").insertAfter($("#Preferred input"));
+                var hasTileUpdated = false;
+                if (!$("service-tile #Faster .thead").length) {
+                    $("<div class='thead'>Faster</div>").insertAfter($("service-tile #Faster input"));
+                    hasTileUpdated = true;
+                }
+
+                if (!$("service-tile #EvenFaster .thead").length) {
+                    $("<div class='thead'>Fastest</div>").insertAfter($("service-tile #EvenFaster input"));
+                    hasTileUpdated = true;
+                }
+
+                if (!$("service-tile #Preferred .thead").length) {
+                    $("<div class='thead'>Preferred</div>").insertAfter($("service-tile #Preferred input"));
+                    hasTileUpdated = true;
+                }
+
+                if (hasTileUpdated) {
+                    $(".upsell-tiles").empty();
+                    createTile("EvenFaster");
+                    createTile("Faster");
+                    createTile("Preferred");
+                    //Move position 
+                    $("label [id^=nbsServiceTileTotalCharge]").each(function (i, e) {
+                        var label = $(e).closest("label");
+                        $(e).prependTo(label)
+                    });
+
+                    //move position of date
+                    $("label [id^=nbsServiceTileDeliveryDate]").each(function (i, e) {
+                        var label = $(e).closest("label");
+                        $(label).append(e);
+                    });
+
+                    //Append date time of delivery
+                    $(".upsell-tiles label [id^=nbsServiceTileDeliveryDate]").each(function (i, e) {
+                        var id = $(e).closest(".ups-buttonList_wrapper.ups-input_wrapper.ups-day_rate").attr("id");
+                        var dateStr = getFormatedDate(getDateForTile(id));
+                        $(e).prepend("<span>" + dateStr + " </span>");
+                    });
+                }
 
                 $(".shipping-option-label").remove();
                 $('<div class="shipping-option-label"><p>Select a shipping service option</p></div>').prependTo($("section.ups-accordion_list"))
-                $(".upsell-tiles").empty();
 
-                var $eFaster = $("#EvenFaster").clone();
-                $eFaster.find("input").attr("id", "cust-input-EvenFaster").attr("name", "cust-input");
-                $eFaster.find("label").attr("for", "cust-input-EvenFaster");
-                $(".upsell-tiles").append($eFaster);
-
-                var $faster = $("#Faster").clone();
-                $faster.find("input").attr("id", "cust-input-Faster").attr("name", "cust-input");
-                $faster.find("label").attr("for", "cust-input-Faster");
-                $(".upsell-tiles").append($faster);
-
-                var $Preferred = $("#Preferred").clone();
-                $Preferred.find("input").attr("id", "cust-input-Preferred").attr("name", "cust-input");
-                $Preferred.find("label").attr("for", "cust-input-Preferred");
-                $(".upsell-tiles").append($Preferred);
-
-                // $(".upsell-tiles label [id^=nbsServiceTileTotalCharge]").each(function(i,e){
-                //     var label = $(e).closest("label");
-                //     $(e).prependTo(label)
-                //  });
-                $("label [id^=nbsServiceTileTotalCharge]").each(function (i, e) {
-                    var label = $(e).closest("label");
-                    $(e).prependTo(label)
-                });
-
-            }, 0);
+            }, 10);
         }
+
+        function getDateForTile(type) {
+            return $("service-tile #" + type).closest("div.row").find("service-group-header").find(".ups-shipping_schedule_header_wrap span").last().text();
+        }
+
+
+        function createTile(tileId) {
+            var $tile = $("#" + tileId).clone();
+            $tile.find("input").attr("id", "cust-input-" + tileId).attr("name", "cust-input");
+            $tile.find("label").attr("for", "cust-input-" + tileId);
+            $(".upsell-tiles").append($tile);
+        }
+
+        function getFormatedDate(dateStr) {
+
+            var dateArr = dateStr.replace(/\,/ig, "").split(" ");
+
+            var monthNames = [
+                'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+                'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+            ];
+
+            var month = monthNames.indexOf(dateArr[0]) + 1;
+            var date = dateArr[1];
+            var year = dateArr[2];
+
+            var newDate = new Date(month + "/" + date + "/" + year);
+
+            function dayOfWeekAsInteger(day) {
+                return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][day];
+            }
+            return dayOfWeekAsInteger(newDate.getDay()) + " " + newDate.getMonth() + "/" + newDate.getDate();
+        }
+
 
         var config = {
             childlist: true,
@@ -261,4 +314,8 @@
         });
         window.hasUpSellLoaded = true;
     }
+
 })();
+
+
+
