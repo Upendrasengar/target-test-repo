@@ -1,14 +1,14 @@
 (function () {
     if (!window.hasUpSellLoaded) {
         var style = `<style id='upsell-styles'>
-           .thead {
+        .thead {
                 display: block;
                 font-size: 15px;
                 font-style: italic;
                 color: #1F9189; 
                 font-weight: 500;
-           	}
-            #EvenFaster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Preferred.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Faster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label{
+        }
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Preferred.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Faster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label{
            color:#fff
         }
         </style>`;
