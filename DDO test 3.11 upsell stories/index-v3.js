@@ -25,7 +25,11 @@
             text-align: center;
         }
         
-        #EvenFaster.ups-day_rate label,#Faster.ups-day_rate label,#Preferred.ups-day_rate label {
+        #EvenFaster.ups-day_rate label,
+        #Faster.ups-day_rate label,
+        #Preferred.ups-day_rate label,
+        #LowestCost.ups-day_rate label,
+        #Recommended.ups-day_rate label {
             padding-top: 48px;
             box-sizing: border-box;
             background: #FFD100;
@@ -38,7 +42,11 @@
             margin-left: 10px !important;
         }
         
-        #EvenFaster.ups-day_rate > input,#Faster.ups-day_rate > input,#Preferred.ups-day_rate > input {
+        #EvenFaster.ups-day_rate > input,
+        #Faster.ups-day_rate > input,
+        #Preferred.ups-day_rate > input,
+        #LowestCost.ups-day_rate > input,
+        #Recommended.ups-day_rate > input {
             padding: 15px 5px !important;
             font-weight: normal !important;
             cursor: pointer !important;
@@ -48,7 +56,11 @@
             border: 1px solid #d9d9d6 !important;
         }
         
-        #EvenFaster.ups-day_rate .ups-radio-custom+div,#Faster.ups-day_rate .ups-radio-custom+div,#Preferred.ups-day_rate .ups-radio-custom+div {
+        #EvenFaster.ups-day_rate .ups-radio-custom+div,
+        #Faster.ups-day_rate .ups-radio-custom+div,
+        #Preferred.ups-day_rate .ups-radio-custom+div,
+        #LowestCost.ups-day_rate .ups-radio-custom+div,
+        #Recommended.ups-day_rate .ups-radio-custom+div {
             padding: 10px;
             background: #330000;
             color: #fff;
@@ -59,7 +71,11 @@
             border-radius: 5px 5px 0px 0px;
         }
         
-        #EvenFaster.ups-day_rate .ups-radio-custom+div+label,#Faster.ups-day_rate .ups-radio-custom+div+label,#Preferred.ups-day_rate .ups-radio-custom+div+label{
+        #EvenFaster.ups-day_rate .ups-radio-custom+div+label,
+        #Faster.ups-day_rate .ups-radio-custom+div+label,
+        #Preferred.ups-day_rate .ups-radio-custom+div+label,
+        #LowestCost.ups-day_rate .ups-radio-custom+div+label,
+        #Recommended.ups-day_rate .ups-radio-custom+div+label{
             padding-top: 48px;
             box-sizing: border-box;
             background: #FFD100;
@@ -67,19 +83,31 @@
             
         }
         
-        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,#Faster.ups-day_rate .ups-radio-custom:checked+div,#Preferred.ups-day_rate .ups-radio-custom:checked+div {
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
+        #Faster.ups-day_rate .ups-radio-custom:checked+div,
+        #Preferred.ups-day_rate .ups-radio-custom:checked+div,
+        #LowestCost.ups-day_rate .ups-radio-custom:checked+div,
+        #Recommended.ups-day_rate .ups-radio-custom:checked+div {
             background: #330000 !important;
             color: #fff !important;
             width: 100% !important;
             border-radius: 5px 5px 0px 0px;
         }
         
-        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,.upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div,.upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div {
+        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #LowestCost.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #Recommended.ups-day_rate .ups-radio-custom:checked+div {
             padding: 12px !important;
             border-radius: 10px 10px 0px 0px;
         }
         
-        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,.upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div+label,.upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div+label{
+        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #LowestCost.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #Recommended.ups-day_rate .ups-radio-custom:checked+div+label{
             box-sizing: border-box;
             background: #00867E;
             color: #fff;
@@ -92,7 +120,11 @@
         }
         
         
-        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,#Faster.ups-day_rate .ups-radio-custom:checked+div+label,#Preferred.ups-day_rate .ups-radio-custom:checked+div+label{
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
+        #LowestCost.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Recommended.ups-day_rate .ups-radio-custom:checked+div+label{
             box-sizing: border-box;
             background: #00867E;
             color: #fff;
@@ -205,18 +237,29 @@
             // $(".thead").remove();
             setTimeout(function () {
                 var hasTileUpdated = false;
-                if (!$("service-tile #Faster .thead").length) {
-                    $("<div class='thead'>Faster</div>").insertAfter($("service-tile #Faster input"));
-                    hasTileUpdated = true;
-                }
 
-                if (!$("service-tile #EvenFaster .thead").length) {
+                if ($("service-tile #EvenFaster").length && !$("service-tile #EvenFaster .thead").length) {
                     $("<div class='thead'>Fastest</div>").insertAfter($("service-tile #EvenFaster input"));
                     hasTileUpdated = true;
                 }
 
-                if (!$("service-tile #Preferred .thead").length) {
+                if ($("service-tile #Faster").length && !$("service-tile #Faster .thead").length) {
+                    $("<div class='thead'>Faster</div>").insertAfter($("service-tile #Faster input"));
+                    hasTileUpdated = true;
+                }
+
+                if ($("service-tile #Preferred").length && !$("service-tile #Preferred .thead").length) {
                     $("<div class='thead'>Preferred</div>").insertAfter($("service-tile #Preferred input"));
+                    hasTileUpdated = true;
+                }
+
+                if ($("service-tile #Recommended").length && !$("service-tile #Recommended .thead").length) {
+                    $("<div class='thead'>Recommended</div>").insertAfter($("service-tile #Recommended input"));
+                    hasTileUpdated = true;
+                }
+
+                if ($("service-tile #LowestCost").length && !$("service-tile #LowestCost .thead").length) {
+                    $("<div class='thead'>Lowest Cost</div>").insertAfter($("service-tile #LowestCost input"));
                     hasTileUpdated = true;
                 }
 
@@ -225,6 +268,8 @@
                     createTile("EvenFaster");
                     createTile("Faster");
                     createTile("Preferred");
+                    createTile("Recommended");
+                    createTile("LowestCost");
                     //Move position 
                     $("label [id^=nbsServiceTileTotalCharge]").each(function (i, e) {
                         var label = $(e).closest("label");
@@ -258,26 +303,23 @@
 
         function createTile(tileId) {
             var $tile = $("#" + tileId).clone();
-            $tile.find("input").attr("id", "cust-input-" + tileId).attr("name", "cust-input");
-            $tile.find("label").attr("for", "cust-input-" + tileId);
-            $(".upsell-tiles").append($tile);
+            if ($tile.length) {
+                $tile.find("input").attr("id", "cust-input-" + tileId).attr("name", "cust-input");
+                $tile.find("label").attr("for", "cust-input-" + tileId);
+                $(".upsell-tiles").append($tile);
+            }
         }
 
         function getFormatedDate(dateStr) {
-
             var dateArr = dateStr.replace(/\,/ig, "").split(" ");
-
             var monthNames = [
                 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
                 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
             ];
-
             var month = monthNames.indexOf(dateArr[0]) + 1;
             var date = dateArr[1];
             var year = dateArr[2];
-
             var newDate = new Date(month + "/" + date + "/" + year);
-
             function dayOfWeekAsInteger(day) {
                 return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][day];
             }
@@ -306,7 +348,12 @@
                 $(".upsell-tiles #EvenFaster input").click();
             } else if (event.target.parentElement.id === "Preferred") {
                 $(".upsell-tiles #Preferred input").click();
-            } else {
+            } else if (event.target.parentElement.id === "Recommended") {
+                $(".upsell-tiles #Recommended input").click();
+            } else if (event.target.parentElement.id === "LowestCost") {
+                $(".upsell-tiles #LowestCost input").click();
+            }
+            else {
                 $('input[name=cust-input]').attr('checked', false);
             }
         });

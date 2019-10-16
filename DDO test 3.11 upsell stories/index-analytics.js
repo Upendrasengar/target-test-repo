@@ -27,13 +27,17 @@
             var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+div')[0];
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
-                    var expirationTime = new Date();
-                    expirationTime.setTime(expirationTime.getTime() + 1 * 3600 * 1000);
+                    var now = new Date();
+                    now.setTime(now.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
-                    docCookies.setItem("selectedTiles", window.selectedTiles, expirationTime.toUTCString(), "/", ".ups.com", true);
+                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
+                    docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
                 }
+            } else {
+                  window.selectedTiles = null;
+                  docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
             }
         }
 
@@ -41,13 +45,17 @@
             var selectedTiles = event.target.parentElement.querySelector('input+div');
             if (selectedTiles && selectedTiles.innerText) {
                 if (selectedTiles.innerText === 'Preferred' || selectedTiles.innerText === 'Faster' || selectedTiles.innerText === 'Fastest') {
-                    var expirationTime = new Date();
-                    expirationTime.setTime(expirationTime.getTime() + 1 * 3600 * 1000);
+                    var now = new Date();
+                    now.setTime(now.getTime() + 1 * 3600 * 1000);
                     window.selectedTiles = selectedTiles.innerText;
-                    docCookies.setItem("selectedTiles", window.selectedTiles, expirationTime.toUTCString(), "/", ".ups.com", true);
+                    docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);
                 } else {
                     window.selectedTiles = null;
+                    docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
                 }
+            } else if(event.target.closest('service-tile')){
+                 window.selectedTiles = null;
+                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");      
             }
         }
 
@@ -80,7 +88,7 @@
 
         $(document).on("click", "button[id='nbsBackForwardNavigationPayAndGetLabelsButton']", function(event) {
             if(!window.selectedTiles) {
-                window.selectedTiles  = docCookies.getItem('selectedTiles');                 
+                 window.selectedTiles  = docCookies.getItem('selectedTiles');                 
             }
             if (window.selectedTiles) {
                 utag.link({
