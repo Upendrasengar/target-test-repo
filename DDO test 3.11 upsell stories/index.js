@@ -245,7 +245,7 @@
                     hasTileUpdated = true;
                 }
 
-                if (!$("service-tile #Faster .thead").length) {
+                if ($("service-tile #Faster").length && !$("service-tile #Faster .thead").length) {
                     $("<div class='thead'>Faster</div>").insertAfter($("service-tile #Faster input"));
                     hasTileUpdated = true;
                 }
