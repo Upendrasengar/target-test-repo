@@ -28,7 +28,7 @@
         #EvenFaster.ups-day_rate label,
         #Faster.ups-day_rate label,
         #Preferred.ups-day_rate label,
-        #LowestCost.ups-day_rate label, 
+        #Cheapest.ups-day_rate label, 
         #Recommended.ups-day_rate label {
             padding-top: 48px;
             box-sizing: border-box;
@@ -45,7 +45,7 @@
         #EvenFaster.ups-day_rate > input,
         #Faster.ups-day_rate > input,
         #Preferred.ups-day_rate > input,
-        #LowestCost.ups-day_rate > input, 
+        #Cheapest.ups-day_rate > input, 
         #Recommended.ups-day_rate > input {
             padding: 15px 5px !important;
             font-weight: normal !important;
@@ -59,7 +59,7 @@
         #EvenFaster.ups-day_rate .ups-radio-custom+div,
         #Faster.ups-day_rate .ups-radio-custom+div,
         #Preferred.ups-day_rate .ups-radio-custom+div,
-        #LowestCost.ups-day_rate .ups-radio-custom+div,
+        #Cheapest.ups-day_rate .ups-radio-custom+div,
         #Recommended.ups-day_rate .ups-radio-custom+div {
             padding: 10px;
             background: #330000;
@@ -74,7 +74,7 @@
         #EvenFaster.ups-day_rate .ups-radio-custom+div+label,
         #Faster.ups-day_rate .ups-radio-custom+div+label,
         #Preferred.ups-day_rate .ups-radio-custom+div+label,
-        #LowestCost.ups-day_rate .ups-radio-custom+div+label,
+        #Cheapest.ups-day_rate .ups-radio-custom+div+label,
         #Recommended.ups-day_rate .ups-radio-custom+div+label{
             padding-top: 48px;
             box-sizing: border-box;
@@ -86,7 +86,7 @@
         #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
         #Faster.ups-day_rate .ups-radio-custom:checked+div,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div,
-        #LowestCost.ups-day_rate .ups-radio-custom:checked+div,
+        #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
         #Recommended.ups-day_rate .ups-radio-custom:checked+div {
             background: #330000 !important;
             color: #fff !important;
@@ -97,7 +97,7 @@
         .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div,
-        .upsell-tiles #LowestCost.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Recommended.ups-day_rate .ups-radio-custom:checked+div {
             padding: 12px !important;
             border-radius: 10px 10px 0px 0px;
@@ -106,7 +106,7 @@
         .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
-        .upsell-tiles #LowestCost.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Recommended.ups-day_rate .ups-radio-custom:checked+div+label{
             box-sizing: border-box;
             background: #00867E;
@@ -123,7 +123,7 @@
         #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
         #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
-        #LowestCost.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
         #Recommended.ups-day_rate .ups-radio-custom:checked+div+label{
             box-sizing: border-box;
             background: #00867E;
@@ -260,8 +260,8 @@
                     hasTileUpdated = true;
                 }
 
-                if ($("service-tile #LowestCost").length && !$("service-tile #LowestCost .thead").length) {
-                    $("<div class='thead'>Lowest Cost</div>").insertAfter($("service-tile #LowestCost input"));
+                if ($("service-tile #Cheapest").length && !$("service-tile #Cheapest .thead").length) {
+                    $("<div class='thead'>Lowest Cost</div>").insertAfter($("service-tile #Cheapest input"));
                     hasTileUpdated = true;
                 }
 
@@ -271,7 +271,7 @@
                     createTile("Faster");
                     createTile("Preferred");
                     createTile("Recommended");
-                    createTile("LowestCost");
+                    createTile("Cheapest");
                     //Move position 
                     $("label [id^=nbsServiceTileTotalCharge]").each(function (i, e) {
                         var label = $(e).closest("label");
@@ -352,8 +352,8 @@
                 $(".upsell-tiles #Preferred input").click();
             } else if (event.target.parentElement.id === "Recommended") {
                 $(".upsell-tiles #Recommended input").click();
-            } else if (event.target.parentElement.id === "LowestCost") {
-                $(".upsell-tiles #LowestCost input").click();
+            } else if (event.target.parentElement.id === "Cheapest") {
+                $(".upsell-tiles #Cheapest input").click();
             }
             else {
                 $('input[name=cust-input]').attr('checked', false);
