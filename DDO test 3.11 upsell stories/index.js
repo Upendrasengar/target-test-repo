@@ -25,6 +25,7 @@
         }
         
         #Fastest.ups-day_rate label,
+        #EvenFaster.ups-day_rate label, 
         #Faster.ups-day_rate label, 
         #Preferred.ups-day_rate label, 
         #Cheapest.ups-day_rate label, 
@@ -46,6 +47,7 @@
         
         #Fastest.ups-day_rate > input,
         #Faster.ups-day_rate > input,
+        #EvenFaster.ups-day_rate > input,
         #Preferred.ups-day_rate > input,
         #Cheapest.ups-day_rate > input,
         #Recommended.ups-day_rate > input {
@@ -59,6 +61,7 @@
         }
         
         #Fastest.ups-day_rate .ups-radio-custom+div,
+        #EvenFaster.ups-day_rate .ups-radio-custom+div,
         #Faster.ups-day_rate .ups-radio-custom+div,
         #Preferred.ups-day_rate .ups-radio-custom+div,
         #Cheapest.ups-day_rate .ups-radio-custom+div,
@@ -74,6 +77,7 @@
         }
         
         #Fastest.ups-day_rate .ups-radio-custom+div+label,
+        #EvenFaster.ups-day_rate .ups-radio-custom+div+label,
         #Faster.ups-day_rate .ups-radio-custom+div+label,
         #Preferred.ups-day_rate .ups-radio-custom+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom+div+label,
@@ -87,6 +91,7 @@
         }
         
         #Fastest.ups-day_rate .ups-radio-custom:checked+div,
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
         #Faster.ups-day_rate .ups-radio-custom:checked+div,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div,
         #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
@@ -98,6 +103,7 @@
         }
         
         .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
@@ -107,6 +113,7 @@
         }
         
         .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
@@ -123,7 +130,9 @@
         }
         
         
-        #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,#Faster.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
         #Recommended.ups-day_rate .ups-radio-custom:checked+div+label {
@@ -173,7 +182,7 @@
         </style>`;
 
         var updateTilesObserver = new MutationObserver(updateTiles);
-        var tagList = ["Fastest", "Faster", "Preferred", "Recommended", "Cheapest"];
+        var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
         var mtObserver = new MutationObserver(function () {
 
             /* 
@@ -307,6 +316,7 @@
          * returns true if tile is updated
          */
         function addTagInServiceTile(tileId, label) {
+            label = label === "EvenFaster" && "Fastest" || label;
             if ($("service-tile #" + tileId + "").length && !$("service-tile #" + tileId + " .thead").length) {
                 $("<div class='thead'>" + label + "</div>").insertAfter($("service-tile #" + tileId + " input"));
                 return true;
