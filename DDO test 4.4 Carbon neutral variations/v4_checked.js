@@ -14,7 +14,7 @@
 						background-size :24px;\
 					}\
 					.background-add {\
-						background-color: #bfc08e;\ margin :-5px 0 0 -12px;\
+						background-color: #dad9b9;\ margin :-5px 0 0 -12px;\
     					padding :5px 0  0 12px;\
 					}\
 					.switch-header-inline {\
@@ -30,6 +30,12 @@
 						padding-left: 500px;\
     					margin-top: -30px;\
     					border: 0px;\
+					}\
+					.carbon-neutral-text {\
+						margin-top: -10px !important;\
+					}\
+					.section-checkbox-label{\
+					   padding-left: 25px !important;\
 					}\
                     </style>";
                     
@@ -102,9 +108,10 @@
         	 $("<span class='icon-leaf'></span>").insertBefore($(labelNode).find('switch-header'));
         	 labelNode.getElementsByClassName('ups-form_label')[0].classList.add('form-label-align');  
 			 $("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']").closest('div').addClass('background-add');
-			 $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?');
+			 $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?').addClass('carbon-neutral-text');
 			 $(labelNode).find('switch-header').addClass('switch-header-inline');
-        	 $(labelNode).find('switch-header').closest('div').append('<p>Select UPS carbonn neutral and support environmental projects that counterbalance the emissions associated with shiping your packages.Up to $.20 for domestic US Shipments. Up to $.75 for international shipments</p>');
+			 $(labelNode).find('switch-header').closest('div').append('<p>Select UPS carbonn neutral and support environmental projects that counterbalance the emissions associated with shiping your packages.Up to $.20 for domestic US Shipments. Up to $.75 for international shipments</p>');
+			 $('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');
         }
     				 
         window.carbonNeutralVariation = true;

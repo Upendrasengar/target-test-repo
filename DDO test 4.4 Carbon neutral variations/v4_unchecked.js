@@ -14,7 +14,7 @@
 						background-size :24px;\
 					}\
 					.background-add {\
-						background-color: #bfc08e;\ margin :-5px 0 0 -12px;\
+						background-color: #dad9b9;\ margin :-5px 0 0 -12px;\
     					padding :5px 0  0 12px;\
 					}\
 					.switch-header-inline {\
@@ -30,6 +30,12 @@
 						padding-left: 500px;\
     					margin-top: -30px;\
     					border: 0px;\
+					}\
+					.carbon-neutral-text {\
+						margin-top: -10px !important;\
+					}\
+					.section-checkbox-label{\
+					   padding-left: 25px !important;\
 					}\
                     </style>";
                     

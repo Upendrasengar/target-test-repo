@@ -14,7 +14,7 @@
 						background-size :16px;\
 					}\
 					.background-add {\
-						background-color: #bfc08e;\ margin :-5px 0 0 -12px;\
+						background-color: #dad9b9;\ margin :-5px 0 0 -12px;\
     					padding :5px 0  0 12px;\
 					}\
 					.switch-header-inline {\
@@ -96,7 +96,7 @@
 			 $("<span class='icon-leaf'></span>").insertBefore($(labelNode).find('switch-header'));
              labelNode.getElementsByClassName('ups-form_label')[0].classList.add('form-label-align');          
 			 $("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']").closest('div').addClass('background-add');
-			 $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?').addClass('carbon-neutral-text');	;
+			 $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?').addClass('carbon-neutral-text');
 			 $(labelNode).find('switch-header').addClass('switch-header-inline');			
 			 $('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');
         }
