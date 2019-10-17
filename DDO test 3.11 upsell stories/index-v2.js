@@ -80,7 +80,7 @@
         #Preferred.ups-day_rate .ups-radio-custom+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom+div+label,
         #Recommended.ups-day_rate .ups-radio-custom+div+label{
-            padding-top: 48px;
+            padding-top: 45px;
             box-sizing: border-box;
             background: #FFE299;
             #transition: all 0.5s;
@@ -174,8 +174,10 @@
         }
         .upsell-tiles label[for^=cust-input-] [id^=nbsServiceTileDeliveryDate]{
             font-weight:100 !important;
-        }
-
+        } 
+        .label[for^=cust-input-]{
+            padding-top: 48px;
+        }       
         </style>`;
 
 
