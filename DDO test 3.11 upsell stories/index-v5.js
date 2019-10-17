@@ -8,38 +8,57 @@
                 color: #1F9189; 
                 font-weight: 500;
         }
-        #EvenFaster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Preferred.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,#Faster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label{
-           color:#fff
+        #Faster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,
+        #EvenFaster.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,
+        #Fastest.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,
+        #Preferred.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,
+        #Recommended.ups-day_rate .ups-radio-custom:checked + label > .upsell-label,
+        #Cheapest.ups-day_rate .ups-radio-custom:checked + label > .upsell-label
+        {
+           color:#fff;
         }
         </style>`;
-       	$("head").append(style);
-        var mtObserver = new MutationObserver(function (mvt, observer) {
-            setTimeout(function () {
-                var section = document.querySelector("shipment-services > service");
-                var hasAnyTile = document.querySelectorAll("#Faster,#EvenFaster,#Preferred");
-                if (section && hasAnyTile.length > 0 && $(".upsell-label").length == 0) {
-                    if (!$("section.ups-accordion_list > div.ups-accordion_wrapper").length) {
-                       
-                        updateTiles();
-                        var config = {
-                            subtree: true,
-                            attributes: true
-                        };
-                        updateTilesObserver = new MutationObserver(updateTiles);
-                        updateTilesObserver.observe(section.querySelector("service-grid"), config);
-                    }
-                }
-            }, 0);
+        $("head").append(style);
+        var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
+        var updateTilesObserver = new MutationObserver(updateTiles);
+        var mtObserver = new MutationObserver(function () {
+            var section = document.querySelector("shipment-services > service");
+            var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "#" + e; }).join(","));
+            if (section && hasAnyTile.length > 0 && $(".upsell-label").length == 0) {
+                updateTiles();
+                var config = {
+                    subtree: true,
+                    childlist: true,
+                    attributes: true
+                };
+
+                updateTilesObserver.observe(section.querySelector("service-grid"), config);
+            } else {
+                updateTilesObserver.disconnect();
+            }
         });
 
+        /**
+        * Method to update tile when service tiles are recreated by the app
+        */
         function updateTiles() {
             console.debug("updateTiles called");
-            setTimeout(function () { 
- 				$(".thead").remove();
-                $("#Faster label").prepend("<div class='thead upsell-label'>Faster</div>");
-                $("#EvenFaster label").prepend("<div class='thead upsell-label'>Fastest</div>");
-                $("#Preferred label").prepend("<div class='thead upsell-label'>Preferred</div>");
-            }, 0);
+            tagList.forEach(function (id) {
+                addTagInServiceTile(id, id == "Cheapest" && "Lowest Cost" || id);
+            });
+        }
+
+        /**
+         * 
+         * @param {Tag for the service tile} tileId 
+         * @param {Tile label to be displayed} label 
+         * returns true if tile is updated
+         */
+        function addTagInServiceTile(tileId, label) {
+            label = label === "EvenFaster" && "Fastest" || label;
+            if (!$("#" + tileId + " label .upsell-label").length) {
+                $("#" + tileId + " label").prepend("<div class='thead upsell-label'>" + label + "</div>");
+            }
         }
 
         var config = {
@@ -47,6 +66,7 @@
             subtree: true,
             attributes: true
         };
+
         mtObserver.observe(document.body, config);
 
         window.hasUpSellLoaded = true;
