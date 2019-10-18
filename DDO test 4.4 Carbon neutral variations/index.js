@@ -5,16 +5,16 @@
 		}
   		
   		 var css = "<style name='DDO_4.4'>\
-                    .icon-leaf {\
-						background: url(https://i.ibb.co/qRckX5r/green-Leaves.png);\
-						height: 20px;\
+					.icon-leaf {\
+						background: url('https://svgshare.com/i/FY8.svg');\
+						height: 23px;\
 						width: 20px;\
 						display: inline-block;	\
 						background-repeat :no-repeat;\
-						background-size :24px;\
+						background-size :16px;\
 					}\
 					.background-add {\
-						background-color: #bfc08e;\ margin :-5px 0 0 -12px;\
+						background-color: #dad9b9;\ margin :-5px 0 0 -12px;\
     					padding :5px 0  0 12px;\
 					}\
 					.switch-header-inline {\
@@ -30,6 +30,9 @@
 						padding-left: 500px;\
     					margin-top: -30px;\
     					border: 0px;\
+					}\
+					.section-checkbox-label {\
+						padding-left: 25px !important;\
 					}\
                     </style>";
                     
@@ -64,7 +67,8 @@
         function carbonNeutralControlVariation(node) {
             var parentElement = node;
             var input = node.querySelector("input[type='checkbox']");
-            var labelNode = node.querySelector("label[class ='ups-lever']");
+			var labelNode = node.querySelector("label[class ='ups-lever']");
+			$('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');
             if(labelNode){
 				if (node.querySelector("label span[class='ups-lever_switch']")) {
 					node.querySelector("label span[class='ups-lever_switch']").remove();

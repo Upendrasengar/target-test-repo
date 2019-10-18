@@ -5,13 +5,13 @@
 		}
   		
   		 var css = "<style name='DDO_4.4'>\
-                    .icon-leaf {\
-						background: url(https://i.ibb.co/qRckX5r/green-Leaves.png);\
-						height: 20px;\
+					.icon-leaf {\
+						background: url('https://svgshare.com/i/FY8.svg');\
+						height: 23px;\
 						width: 20px;\
 						display: inline-block;	\
 						background-repeat :no-repeat;\
-						background-size :24px;\
+						background-size :16px;\
 					}\
 					.background-add {\
 						background-color: #dad9b9;\ margin :-5px 0 0 -12px;\
@@ -97,6 +97,7 @@
 			  $("<span class='icon-leaf'></span>").insertBefore($(labelNode).find('switch-header'));
               labelNode.getElementsByClassName('ups-form_label')[0].classList.add('form-label-align');  
 			  $(labelNode).find('switch-header').addClass('switch-header-inline'); 
+			  $(labelNode).find('switch-header>strong').addClass('carbon-neutral-text');
 			  $('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');           
 		}		
 				 
