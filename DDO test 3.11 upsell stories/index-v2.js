@@ -177,7 +177,10 @@
         } 
         .label[for^=cust-input-]{
             padding-top: 48px;
-        }       
+        }     
+        .ups-shipping_schedule_when .ups-day_rate input:checked+label {
+            border : none !important;
+        }  
         </style>`;
 
 
