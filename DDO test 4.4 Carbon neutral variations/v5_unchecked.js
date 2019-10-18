@@ -31,6 +31,12 @@
     					margin-top: -30px;\
     					border: 0px;\
 					}\
+					.carbon-neutral-text {\
+						margin-top: -10px !important;\
+					}\
+					.section-checkbox-label{\
+					   padding-left: 25px !important;\
+					}\
                     </style>";
                     
         $("head").append(css);					

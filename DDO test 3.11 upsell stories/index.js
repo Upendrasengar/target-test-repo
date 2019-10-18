@@ -82,7 +82,7 @@
         #Preferred.ups-day_rate .ups-radio-custom+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom+div+label,
         #Recommended.ups-day_rate .ups-radio-custom+div+label{
-            padding-top: 48px;
+            padding-top: 45px;
             box-sizing: border-box;
             background: #406DAB;
             color: #fff;
@@ -178,6 +178,9 @@
         }
         .upsell-tiles label[for^=cust-input-] [id^=nbsServiceTileDeliveryDate]{
             font-weight:100 !important;
+        }
+        .label[for^=cust-input-]{
+            padding-top: 48px;
         }
         </style>`;
 
@@ -305,7 +308,7 @@
          * returns date of service tile which it belongs
          */
         function getDateForTile(type) {
-            return $("service-tile #" + type).parent().closest("div").find("service-group-header").find(".ups-shipping_schedule_header_wrap span").last().text();
+            return $("service-tile #" +type).closest('div.row').parent().find('service-group-header').find(".ups-shipping_schedule_header_wrap span").last().text();
         }
 
 
