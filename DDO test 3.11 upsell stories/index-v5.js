@@ -23,7 +23,7 @@
         var updateTilesObserver = new MutationObserver(updateTiles);
         var mtObserver = new MutationObserver(function () {
             var section = document.querySelector("shipment-services > service");
-            var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "#" + e; }).join(","));
+            var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "service-tile #" + e; }).join(","));
             if (section && hasAnyTile.length > 0 && $(".upsell-label").length == 0) {
                 updateTiles();
                 var config = {

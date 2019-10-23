@@ -6,14 +6,14 @@
             attributes: true
         };
         var css = '<style>\
-                common-view-toggle.custom-options fieldset .ups-input_wrapper:first-child{\
+                common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle].custom-options fieldset .ups-input_wrapper:first-child{\
                     width:40% !important;\
                 }\
-                common-view-toggle.custom-options fieldset .ups-input_wrapper:last-child{\
+                common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle].custom-options fieldset .ups-input_wrapper:last-child{\
                     width:60% !important;\
                 }\
-                .cust-width{ width: 50% !important} .cust-message { display: block; font-size: smaller; color: #808080; } common-view-toggle.custom-options .cust-message {position: absolute;z-index: 1; white-space: nowrap;}\
-                common-view-toggle.custom-options .ups-toggle_view_left:before, .ups-toggle_view_right:before\
+                .cust-width{ width: 50% !important} .cust-message { display: block; font-size: smaller; color: #808080; } common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle].custom-options .cust-message {position: absolute;z-index: 1; white-space: nowrap;}\
+                common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle].custom-options .ups-toggle_view_left:before, .ups-toggle_view_right:before\
                 {\
                     display:none;\
                 }\
@@ -27,10 +27,10 @@
 
         }
         function updateInterface() {
-            var cvt = $("common-view-toggle");
+            var cvt = $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle]");
             if (cvt.length && !cvt.hasClass("custom-options")) {
                 if (!window.hasTestDefaultSelected) {
-                    //Dispatch click on schedule a pick-up
+                    //Dispatch click on schedule a Collection
                     setTimeout(function () {
                         $("#nbsShipmentServicesDropOffPickupViewToggleOption2InputId").click();
                     }, 100);
@@ -40,24 +40,24 @@
                 //start of guided view handling
                 if (~window.location.href.indexOf("ups.com/ship/guided")) {
                     setTimeout(function () {
-                        $("common-view-toggle fieldset div p").parent().remove()
-                        $("common-view-toggle fieldset div label").removeClass("ups-form_label").addClass("ups-radio-custom-label")
-                        $("common-view-toggle fieldset div").removeClass("ups-toggle_view_selection").addClass("ups-input_wrapper ups-buttonList_wrapper")
-                        $("common-view-toggle fieldset div").removeClass("col-md-4").addClass("col-md-6");
-                        $("#nbsPickupServicePageShipmentServices > section > div > h2 > span").text("Choose Pick-Up or Drop-Off");
-                        $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span:first-child").text("Schedule a pickup");
-                        var div = $("common-view-toggle fieldset div");
+                        $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle] fieldset div p").parent().remove()
+                        $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle] fieldset div label").removeClass("ups-form_label").addClass("ups-radio-custom-label")
+                        $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle] fieldset div").removeClass("ups-toggle_view_selection").addClass("ups-input_wrapper ups-buttonList_wrapper")
+                        $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle] fieldset div").removeClass("col-md-4").addClass("col-md-6");
+                        $("#nbsPickupServicePageShipmentServices > section:first-child > div > h2 > span").text("Choose Collection or Drop-Off");
+                        $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span:first-child").text("Schedule a collection");
+                        var div = $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle] fieldset div");
                         if (!~div[0].textContent.indexOf("Schedule"))
                             $(div[0]).insertAfter(div[1]);
-                        $("common-view-toggle.custom-options fieldset .ups-input_wrapper:last-child").css("text-align", "right");
+                        $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle].custom-options fieldset .ups-input_wrapper:last-child").css("text-align", "right");
                     }, 200);
                 } else {
-                    $("#nbsShipmentServices > section > div > h2 > span").text("Choose Pick-Up or Drop-Off");
+                    $("#nbsShipmentServices > section:nth-child(1) > div.ups-section-header > h2 > span").text("Choose Collection or Drop-Off");
                 }
                 //End of guided view 
 
                 //Add class
-                $("common-view-toggle").addClass("custom-options");
+                $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle]").addClass("custom-options");
 
                 //Disconnect observer
                 if (window.pcMt) {
@@ -95,7 +95,7 @@
                 }
 
             };
-            $("common-view-toggle").addClass("custom-options");
+            $("common-view-toggle[controlid=nbsShipmentServicesDropOffPickupViewToggle]").addClass("custom-options");
         }
         var mt = new MutationObserver(function (ele, observer) {
             setTimeout(function () {
@@ -166,12 +166,12 @@
                 pickupCharges = ele.innerText;
                 // window.pickupCharges = (ele && ele.innerText) || window.pickupCharges;
                 // console.debug(pickupCharges);
-                // $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span").text("Schedule a pick-up (+" + pickupCharges + ")");
-                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up <span class='cust-message'>-" + pickupCharges + "</span>");
+                // $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span").text("Schedule a Collection (+" + pickupCharges + ")");
+                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another collection <span class='cust-message'>-" + pickupCharges + "</span>");
             } else {
-                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another pick-up");
+                $("[for=nbsShipmentServicesDropOffPickupViewToggleOption1InputId]").html("Drop-off shipment or include it in another collection");
             }
-            $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span:first-child").text("Schedule a pickup");
+            $("[for=nbsShipmentServicesDropOffPickupViewToggleOption2InputId] span:first-child").text("Schedule a collection");
 
             // simulating click on expand button to collapse
             $('#nbsBalanceBarExpandButton').trigger("click");
