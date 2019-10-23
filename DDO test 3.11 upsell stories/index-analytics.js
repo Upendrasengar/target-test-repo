@@ -38,8 +38,8 @@
         }
        
 
-        function setSelectedtiles(e) {
-            var selectedTiles = e.target.parentElement.querySelector('input+div');
+        function setSelectedtiles(event) {
+            var selectedTiles = event.target.parentElement.querySelector('input+div');
             if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
                 var expirationDate = new Date();
                 expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);

@@ -36,7 +36,7 @@
             }
         }
 
-        function setSelectedtiles() {
+        function setSelectedtiles(event) {
             var selectedTiles = event.target.parentElement.querySelector('input+label div.thead');
             if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
                 var expirationDate = new Date();
