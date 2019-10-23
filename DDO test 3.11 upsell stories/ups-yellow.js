@@ -187,7 +187,7 @@
          
         @media screen and (max-width: 1412px){
             :not(.ups-drawer-content) > shipment-services .ups-shipping_schedule_when .ups-day_rate label {
-                min-height: 133px; 
+                min-height: 136px; 
             }
         }
         </style>`;
