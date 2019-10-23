@@ -20,15 +20,17 @@
             subtree: true,
             attributes: true
         };
+
+        var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
         mtObserver.observe(document.body, config);
 
         function setDefaultFlagWithTiles() {
-            var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+label div.thead')[0];
-            if (selectedTiles && selectedTiles.innerText) {               
-                var now = new Date();
-                now.setTime(now.getTime() + 1 * 3600 * 1000);
+            var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+div')[0];
+            if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
+                var expirationDate = new Date();
+                expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
-                docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);                  
+                docCookies.setItem("selectedTiles", window.selectedTiles, expirationDate.toUTCString(), "/", ".ups.com", true);                  
             } else {
                 window.selectedTiles = null;
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
@@ -37,24 +39,30 @@
        
 
         function setSelectedtiles(e) {
-            var selectedTiles = e.target.parentElement.querySelector('label div.thead');
-            if (selectedTiles && selectedTiles.innerText) {         
-                var now = new Date();
-                now.setTime(now.getTime() + 1 * 3600 * 1000);
+            var selectedTiles = e.target.parentElement.querySelector('input+div');
+            if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
+                var expirationDate = new Date();
+                expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
-                docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);                               
+                docCookies.setItem("selectedTiles", window.selectedTiles, expirationDate.toUTCString(), "/", ".ups.com", true);                               
             } else if(event.target.closest('service-tile')){
                 window.selectedTiles = null;
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");      
             }
-        }         
-
-        document.addEventListener("change",function(event){
-            if(event.target.id && event.target.id.indexOf('nbsServiceTileServiceRadio') >= 0) {
-              setSelectedtiles(event);      
-            }   
+        }    
+        
+        $(document).on("change", ".upsell-tiles", function(event) {
+            if (event.target.checked) {
+                setSelectedtiles();
+            }
         });
-     
+
+        $(document).on("change", ".ups-shipping_schedule_grid", function(event) {
+            if (event.target.checked) {
+                setSelectedtiles();
+            }
+        });
+       
         $(document).on("click", "button[id='nbsBackForwardNavigationReviewPrimaryButton']", function(event) {
             if (!window.selectedTiles) {
                 setDefaultFlagWithTiles();
