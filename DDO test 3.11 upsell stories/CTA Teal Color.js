@@ -194,7 +194,7 @@
             */
             setTimeout(function () {
                 var section = document.querySelector("shipment-services > service");
-                var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "#" + e; }).join(","));
+                var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "service-tile #" + e; }).join(","));
                 if (section && hasAnyTile.length > 0) {
                     if (!$("section.ups-accordion_list > div.ups-accordion_wrapper").length) {
                         $("head").append(style);

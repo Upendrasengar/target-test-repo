@@ -4,7 +4,7 @@
         .service-tile-header {
             box-sizing: border-box;
             padding: 10px;
-            background: #062053;
+            background: #330000;
             color: #fff;
             position: absolute;
             width: 100%;
@@ -20,34 +20,32 @@
         }
         
         .ups-shipping_schedule_when .ups-day_rate label {
-            background: #CED8E5;
+            background: #FFD100;
+            border: 1px solid #FFD100 !important;
             text-align: center;
         }
         
+        #EvenFaster.ups-day_rate label,
         #Fastest.ups-day_rate label,
-        #EvenFaster.ups-day_rate label, 
-        #Faster.ups-day_rate label, 
-        #Preferred.ups-day_rate label, 
-        #Cheapest.ups-day_rate label, 
-        #Recommended.ups-day_rate label
-         {
+        #Faster.ups-day_rate label,
+        #Preferred.ups-day_rate label,
+        #Cheapest.ups-day_rate label,
+        #Recommended.ups-day_rate label {
             padding-top: 48px;
             box-sizing: border-box;
-            background: #406DAB;
-            color: #fff;
-            border: 1px solid #406DAB;
+            background: #FFD100;
+            border: 1px solid #FFD100;
         }
         
         .upsell-tiles > .ups-day_rate {
             width: 300px !important;
+            display: inline-block !important;
             margin-left: 10px !important;
-            width: 33% !important;
-            margin: 1.5% !important;
         }
         
+        #EvenFaster.ups-day_rate > input,
         #Fastest.ups-day_rate > input,
         #Faster.ups-day_rate > input,
-        #EvenFaster.ups-day_rate > input,
         #Preferred.ups-day_rate > input,
         #Cheapest.ups-day_rate > input,
         #Recommended.ups-day_rate > input {
@@ -60,14 +58,14 @@
             border: 1px solid #d9d9d6 !important;
         }
         
-        #Fastest.ups-day_rate .ups-radio-custom+div,
         #EvenFaster.ups-day_rate .ups-radio-custom+div,
+        #Fastest.ups-day_rate .ups-radio-custom+div,
         #Faster.ups-day_rate .ups-radio-custom+div,
         #Preferred.ups-day_rate .ups-radio-custom+div,
         #Cheapest.ups-day_rate .ups-radio-custom+div,
         #Recommended.ups-day_rate .ups-radio-custom+div {
             padding: 10px;
-            background: #062053;
+            background: #330000;
             color: #fff;
             position: absolute;
             width: 100%;
@@ -76,34 +74,33 @@
             border-radius: 5px 5px 0px 0px;
         }
         
-        #Fastest.ups-day_rate .ups-radio-custom+div+label,
         #EvenFaster.ups-day_rate .ups-radio-custom+div+label,
+        #Fastest.ups-day_rate .ups-radio-custom+div+label,
         #Faster.ups-day_rate .ups-radio-custom+div+label,
         #Preferred.ups-day_rate .ups-radio-custom+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom+div+label,
         #Recommended.ups-day_rate .ups-radio-custom+div+label{
             padding-top: 45px;
             box-sizing: border-box;
-            background: #406DAB;
-            color: #fff;
+            background: #FFD100;
             #transition: all 0.5s;
             
         }
         
-        #Fastest.ups-day_rate .ups-radio-custom:checked+div,
         #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
+        #Fastest.ups-day_rate .ups-radio-custom:checked+div,
         #Faster.ups-day_rate .ups-radio-custom:checked+div,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div,
         #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
         #Recommended.ups-day_rate .ups-radio-custom:checked+div {
-            background: #062053 !important;
+            background: #330000 !important;
             color: #fff !important;
             width: 100% !important;
             border-radius: 5px 5px 0px 0px;
         }
         
-        .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div,
+        .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div,
         .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div,
@@ -112,8 +109,8 @@
             border-radius: 10px 10px 0px 0px;
         }
         
-        .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
+        .upsell-tiles #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
         .upsell-tiles #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
@@ -130,17 +127,17 @@
         }
         
         
-        #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
         #EvenFaster.ups-day_rate .ups-radio-custom:checked+div+label,
+        #Fastest.ups-day_rate .ups-radio-custom:checked+div+label,
         #Faster.ups-day_rate .ups-radio-custom:checked+div+label,
         #Preferred.ups-day_rate .ups-radio-custom:checked+div+label,
         #Cheapest.ups-day_rate .ups-radio-custom:checked+div+label,
-        #Recommended.ups-day_rate .ups-radio-custom:checked+div+label {
+        #Recommended.ups-day_rate .ups-radio-custom:checked+div+label{
             box-sizing: border-box;
             background: #00867E;
             color: #fff;
             box-shadow: 0px 5px 5px 0px #868484;
-            border-color: #00867E;
+            border-color: #00867E !important;
         }
         
         .ups-shipping_schedule_when .ups-day_rate label {
@@ -168,11 +165,9 @@
             background-color: transparent !important;
             color: #000 !important;
         }
-
         label [id^=nbsServiceTileTotalCharge]{
             font-size:20px;
         }
-
         .upsell-tiles label[for^=cust-input-] p[id^=nbsServiceTileServiceDescription]{
             font-weight:bold;
         }
@@ -187,6 +182,8 @@
         }
         </style>`;
 
+
+
         var updateTilesObserver = new MutationObserver(updateTiles);
         var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
         var mtObserver = new MutationObserver(function () {
@@ -196,7 +193,7 @@
             */
             setTimeout(function () {
                 var section = document.querySelector("shipment-services > service");
-                var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "#" + e; }).join(","));
+                var hasAnyTile = document.querySelectorAll(tagList.map(function (e) { return "service-tile #" + e; }).join(","));
                 if (section && hasAnyTile.length > 0) {
                     if (!$("section.ups-accordion_list > div.ups-accordion_wrapper").length) {
                         $("head").append(style);
@@ -388,6 +385,3 @@
         window.hasUpSellLoaded = true;
     }
 })();
-
-
-
