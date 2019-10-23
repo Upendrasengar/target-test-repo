@@ -17,9 +17,13 @@
         {
            color:#fff;
         }
+
+        section service-group-header .ups-shipping_schedule_header_wrap {
+            text-align : left !important;
+        }
         </style>`;
         $("head").append(style);
-        var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
+        var tagList = ["Fastest", "EvenFaster", "Faster", "Preferrred", "Recommended", "Cheapest"];
         var updateTilesObserver = new MutationObserver(updateTiles);
         var mtObserver = new MutationObserver(function () {
             var section = document.querySelector("shipment-services > service");

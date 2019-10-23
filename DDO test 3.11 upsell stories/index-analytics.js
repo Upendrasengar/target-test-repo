@@ -26,7 +26,7 @@
 
         function setDefaultFlagWithTiles() {
             var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+div')[0];
-            if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
+            if (selectedTiles && selectedTiles.parentElement && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.parentElement.id})) {               
                 var expirationDate = new Date();
                 expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
@@ -40,7 +40,7 @@
 
         function setSelectedtiles(event) {
             var selectedTiles = event.target.parentElement.querySelector('input+div');
-            if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
+            if (selectedTiles && selectedTiles.parentElement && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.parentElement.id})) {               
                 var expirationDate = new Date();
                 expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
