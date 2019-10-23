@@ -26,10 +26,10 @@
         function setDefaultFlagWithTiles() {
             var selectedTiles = $('service-tile > div > input[id^="nbsServiceTileServiceRadio"]:checked+label div.thead')[0];
             if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
-                var now = new Date();
-                now.setTime(now.getTime() + 1 * 3600 * 1000);
+                var expirationDate = new Date();
+                expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
-                docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);                  
+                docCookies.setItem("selectedTiles", window.selectedTiles, expirationDate.toUTCString(), "/", ".ups.com", true);                  
             } else {
                 window.selectedTiles = null;
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
@@ -39,10 +39,10 @@
         function setSelectedtiles() {
             var selectedTiles = event.target.parentElement.querySelector('input+label div.thead');
             if (selectedTiles && selectedTiles.innerText && tagList.find(function(item){ return item === selectedTiles.innerText})) {               
-                var now = new Date();
-                now.setTime(now.getTime() + 1 * 3600 * 1000);
+                var expirationDate = new Date();
+                expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
                 window.selectedTiles = selectedTiles.innerText;
-                docCookies.setItem("selectedTiles", window.selectedTiles, now.toUTCString(), "/", ".ups.com", true);                               
+                docCookies.setItem("selectedTiles", window.selectedTiles, expirationDate.toUTCString(), "/", ".ups.com", true);                               
             } else if(event.target.closest('service-tile')){
                 window.selectedTiles = null;
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");      

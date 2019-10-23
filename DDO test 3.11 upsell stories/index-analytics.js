@@ -51,16 +51,10 @@
             }
         }    
         
-        $(document).on("change", ".upsell-tiles", function(event) {
-            if (event.target.checked) {
-                setSelectedtiles();
-            }
-        });
-
-        $(document).on("change", ".ups-shipping_schedule_grid", function(event) {
-            if (event.target.checked) {
-                setSelectedtiles();
-            }
+        document.addEventListener("change",function(event){
+            if(event.target.id && event.target.id.indexOf('nbsServiceTileServiceRadio') >= 0) {
+                setSelectedtiles(event);      
+            }   
         });
        
         $(document).on("click", "button[id='nbsBackForwardNavigationReviewPrimaryButton']", function(event) {
