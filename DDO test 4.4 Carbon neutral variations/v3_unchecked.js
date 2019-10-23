@@ -88,7 +88,13 @@
 					  var parent = document.querySelector('section > div.ups-toggle_list')	
 					  parent.insertBefore(document.querySelector('carbon-neutral-option') , document.querySelector('saturday-delivery-option'));			 
 					  modifyLabelV3(labelNode);
-				}	
+				}
+				var labels = $('section common-switch switch-header>strong[class*="ups-form_label"]');
+				labels.each(function(item){
+					if(labels[item] && labels[item].innerText.indexOf('carbon neutral')<0){
+						$(labels[item]).css('font-weight','normal');
+					}
+				});	
             }          				           
         }
               

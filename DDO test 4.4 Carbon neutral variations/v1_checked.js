@@ -101,6 +101,10 @@
 					  parent.insertBefore(document.querySelector('carbon-neutral-option') , document.querySelector('saturday-delivery-option'));			 
 					  modifyLabelV1(labelNode);
 				}	
+				var labels = $('section common-switch switch-header>strong[class*="ups-form_label"]');
+				labels.each(function(item){					 
+					$(labels[item]).css('font-weight','normal'); 
+				});
             }          				           
         }
        		

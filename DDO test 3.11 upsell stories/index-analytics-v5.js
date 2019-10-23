@@ -34,10 +34,9 @@
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");
             }
         }
-       
 
-        function setSelectedtiles(e) {
-            var selectedTiles = e.target.parentElement.querySelector('label div.thead');
+        function setSelectedtiles() {
+            var selectedTiles = event.target.parentElement.querySelector('input+label div.thead');
             if (selectedTiles && selectedTiles.innerText) {         
                 var now = new Date();
                 now.setTime(now.getTime() + 1 * 3600 * 1000);
@@ -47,14 +46,20 @@
                 window.selectedTiles = null;
                 docCookies.removeItem("selectedTiles" ,  "/", ".ups.com");      
             }
-        }         
+        }
 
-        document.addEventListener("change",function(event){
-            if(event.target.id && event.target.id.indexOf('nbsServiceTileServiceRadio') >= 0) {
-              setSelectedtiles(event);      
-            }   
+        $(document).on("change", ".upsell-tiles", function(event) {
+            if (event.target.checked) {
+                setSelectedtiles();
+            }
         });
-     
+
+        $(document).on("click", ".ups-shipping_schedule_grid", function(event) {
+            if (event.target.parentElement && event.target) {
+                setSelectedtiles();
+            }
+        });
+
         $(document).on("click", "button[id='nbsBackForwardNavigationReviewPrimaryButton']", function(event) {
             if (!window.selectedTiles) {
                 setDefaultFlagWithTiles();

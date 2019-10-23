@@ -89,6 +89,12 @@
 					  parent.insertBefore(document.querySelector('carbon-neutral-option') , document.querySelector('saturday-delivery-option'));			 
 					  modifyLabelV5(labelNode);
 				}	
+				var labels = $('section common-switch switch-header>strong[class*="ups-form_label"]');
+				labels.each(function(item){
+					if(labels[item] && labels[item].innerText.indexOf('carbon neutral')<0){
+						$(labels[item]).css('font-weight','normal');
+					}
+				});	
             }          				           
         }               
 
@@ -98,7 +104,7 @@
 			 $("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']").closest('div').addClass('background-add');
 			 $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?').addClass('carbon-neutral-text');
 			 $(labelNode).find('switch-header').addClass('switch-header-inline');
-        	 $(labelNode).find('switch-header').closest('div').append('<details close><summary class="detail-label-summary"><span id="carbonNeutralLearnMore" style="text-decoration: underline;">Learn More</span></summary><p>Select UPS carbon neutral and support environmental projects that counterbalance the emissions associated with shiping your packages.Up to $.20 for domestic US Shipments. Up to $.75 for international shipments</p></details>');
+        	 $(labelNode).find('switch-header').closest('div').append('<details close><summary class="detail-label-summary"><span id="carbonNeutralLearnMore" style="text-decoration: underline;">Learn More</span></summary><p style="font-size:0.95em;">Select UPS carbon neutral and support environmental projects that counterbalance the emissions associated with shipping your package.Up to $.20 for domestic US Shipments. Up to $.75 for international shipments</p></details>');
         }       
 
         window.carbonNeutralVariation = true;

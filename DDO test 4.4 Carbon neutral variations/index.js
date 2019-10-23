@@ -77,8 +77,7 @@
 				if (labelNode) {				
 					labelNode.classList.add('ups-checkbox-custom-label');
 					labelNode.getElementsByClassName('ups-lever_rlabel')[0].style.marginLeft = "15px";
-					labelNode.getElementsByClassName('ups-form_label')[0].style.marginTop = "0px";	
-					 		               
+					labelNode.getElementsByClassName('ups-form_label')[0].style.marginTop = "0px";						 		               
 				}
 				var insertedNode = parentElement.insertBefore(input, labelNode);
 				if (labelNode.getAttribute('for') === 'nbsCarbonNeutralOptionBaseOptionSwitch' ) {
@@ -86,6 +85,10 @@
 					  var parent = document.querySelector('section > div.ups-toggle_list')	
 					  parent.insertBefore(document.querySelector('carbon-neutral-option') , document.querySelector('saturday-delivery-option'));			 
 				}	
+				var labels = $('section common-switch switch-header>strong[class*="ups-form_label"]');
+				labels.each(function(item){				 
+					$(labels[item]).css('font-weight','normal');					 
+				});
             }          				           
         }
        			
