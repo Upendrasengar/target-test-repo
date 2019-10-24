@@ -20,6 +20,16 @@
         </style>`;
         $("head").append(style);
         var tagList = ["Fastest", "EvenFaster", "Faster", "Preferrred", "Recommended", "Cheapest"];
+
+        //Cancel shipment handler
+        document.addEventListener("click", cancelShipmentHandler, true);
+
+        function cancelShipmentHandler(event) {
+            if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
+                //Since user is cancelling shipment so again select schedule pick up by default as a fresh journey
+                window.recommendDefault = false;
+            }
+        }
         var updateTilesObserver = new MutationObserver(updateTiles);
         var mtObserver = new MutationObserver(function () {
             var section = document.querySelector("shipment-services > service");
@@ -46,6 +56,13 @@
             tagList.forEach(function (id) {
                 addTagInServiceTile(id, id == "Cheapest" && "Lowest Cost" || id);
             });
+
+            setTimeout(function() {
+                if ($('service-tile #Recommended').length > 0 && !window.recommendDefault) {
+                    window.recommendDefault = true;
+                    $('service-tile #Recommended label').click();
+                }
+            }, 400);
         }
 
         /**

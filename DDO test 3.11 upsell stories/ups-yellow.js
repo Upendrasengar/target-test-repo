@@ -196,6 +196,16 @@
 
         var updateTilesObserver = new MutationObserver(updateTiles);
         var tagList = ["Fastest", "EvenFaster", "Faster", "Preferred", "Recommended", "Cheapest"];
+        
+        //Cancel shipment handler
+        document.addEventListener("click", cancelShipmentHandler, true);
+
+        function cancelShipmentHandler(event) {
+            if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
+                //Since user is cancelling shipment so again select schedule pick up by default as a fresh journey
+                window.recommendDefault = false;                
+            }
+        }
         var mtObserver = new MutationObserver(function () {
 
             /* 
@@ -307,6 +317,13 @@
                     var dateStr = getFormatedDate(getDateForTile(id));
                     $(e).prepend("<span>" + dateStr + " </span>");
                 });
+
+                setTimeout(function() {
+                    if ($('service-tile #Recommended').length > 0 && !window.recommendDefault) {
+                        window.recommendDefault = true;
+                        $('service-tile #Recommended label').click();
+                    }
+                }, 400);
             }
             $(".shipping-option-label").remove();
             $('<div class="shipping-option-label"><p>Select a shipping service option</p></div>').prependTo($("section.ups-accordion_list"))
