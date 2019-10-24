@@ -16,11 +16,7 @@
         #Cheapest.ups-day_rate .ups-radio-custom:checked + label > .upsell-label
         {
            color:#fff;
-        }
-
-        section service-group-header .ups-shipping_schedule_header_wrap {
-            text-align : left !important;
-        }
+        }       
         </style>`;
         $("head").append(style);
         var tagList = ["Fastest", "EvenFaster", "Faster", "Preferrred", "Recommended", "Cheapest"];
