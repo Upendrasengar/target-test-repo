@@ -24,6 +24,15 @@
         //Cancel shipment handler
         document.addEventListener("click", cancelShipmentHandler, true);
 
+        document.addEventListener("click", function(e) {
+            if (e.target.closest('#nbsPickupServicePageShipmentServices')) {
+                if (e.target.id && e.target.id.indexOf('ups-official-dp-chooser') >= 0 || e.target.classList.contains('ups-official_datepicker_today_btn') || e.target.classList.contains('ups-official_datepicker_clear_btn')) {
+                    window.recommendDefault = false;
+                }
+            }
+        }, true);
+
+
         function cancelShipmentHandler(event) {
             if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
                 //Since user is cancelling shipment so again select schedule pick up by default as a fresh journey
