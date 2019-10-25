@@ -331,6 +331,8 @@
                     if ($('service-tile #Recommended').length > 0 && !window.recommendDefault) {
                         window.recommendDefault = true;
                         $('service-tile #Recommended label').click();
+                    } else if ($('service-tile #Recommended').length > 0 && window.recommendDefault && $('service-tile input[id^="nbsServiceTileServiceRadio"]:checked').length == 0) {
+                        $('service-tile #Recommended label').click();   
                     }
                 }, 400);
             }
