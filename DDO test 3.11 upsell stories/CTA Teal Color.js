@@ -208,7 +208,7 @@
             }
         }
 
-        document.addEventListener("click", function(e) {
+             document.addEventListener("click", function(e) {
             if (e.target.closest('#nbsPickupServicePageShipmentServices')) {
                 if (e.target.id && e.target.id.indexOf('ups-official-dp-chooser') >= 0 || e.target.classList.contains('ups-official_datepicker_today_btn') || e.target.classList.contains('ups-official_datepicker_clear_btn')) {
                     window.recommendDefault = false;
