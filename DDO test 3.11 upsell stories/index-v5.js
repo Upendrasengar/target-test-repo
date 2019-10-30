@@ -24,7 +24,7 @@
         //Cancel shipment handler
         document.addEventListener("click", cancelShipmentHandler, true);
 
-        document.addEventListener("click", function(e) {
+        document.addEventListener("click", function (e) {
             if (e.target.closest('#nbsPickupServicePageShipmentServices')) {
                 if (e.target.id && e.target.id.indexOf('ups-official-dp-chooser') >= 0 || e.target.classList.contains('ups-official_datepicker_today_btn') || e.target.classList.contains('ups-official_datepicker_clear_btn')) {
                     window.recommendDefault = false;
@@ -66,9 +66,11 @@
                 addTagInServiceTile(id, id == "Cheapest" && "Lowest Cost" || id);
             });
 
-            setTimeout(function() {
+            setTimeout(function () {
                 if ($('service-tile #Recommended').length > 0 && !window.recommendDefault) {
                     window.recommendDefault = true;
+                    $('service-tile #Recommended label').click();
+                } else if ($('service-tile #Recommended').length > 0 && window.recommendDefault && $('service-tile input[id^="nbsServiceTileServiceRadio"]:checked').length == 0) {
                     $('service-tile #Recommended label').click();
                 }
             }, 400);

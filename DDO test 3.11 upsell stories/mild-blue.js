@@ -204,11 +204,11 @@
         function cancelShipmentHandler(event) {
             if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {
                 //Since user is cancelling shipment so again select schedule pick up by default as a fresh journey
-                window.recommendDefault = false;                
+                window.recommendDefault = false;
             }
         }
 
-        document.addEventListener("click", function(e) {
+        document.addEventListener("click", function (e) {
             if (e.target.closest('#nbsPickupServicePageShipmentServices')) {
                 if (e.target.id && e.target.id.indexOf('ups-official-dp-chooser') >= 0 || e.target.classList.contains('ups-official_datepicker_today_btn') || e.target.classList.contains('ups-official_datepicker_clear_btn')) {
                     window.recommendDefault = false;
@@ -328,9 +328,11 @@
                     $(e).prepend("<span>" + dateStr + " </span>");
                 });
 
-                setTimeout(function() {
+                setTimeout(function () {
                     if ($('service-tile #Recommended').length > 0 && !window.recommendDefault) {
                         window.recommendDefault = true;
+                        $('service-tile #Recommended label').click();
+                    } else if ($('service-tile #Recommended').length > 0 && window.recommendDefault && $('service-tile input[id^="nbsServiceTileServiceRadio"]:checked').length == 0) {
                         $('service-tile #Recommended label').click();
                     }
                 }, 400);
@@ -345,7 +347,7 @@
          * returns date of service tile which it belongs
          */
         function getDateForTile(type) {
-            return $("service-tile #" +type).closest('div.row').parent().find('service-group-header').find(".ups-shipping_schedule_header_wrap span").last().text();
+            return $("service-tile #" + type).closest('div.row').parent().find('service-group-header').find(".ups-shipping_schedule_header_wrap span").last().text();
         }
 
 

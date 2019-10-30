@@ -6,7 +6,7 @@
   		
   		 var css = "<style name='DDO_4.4'>\
                     .icon-leaf {\
-						background: url('https://svgshare.com/i/FY8.svg');\
+						background: url('https://www.ups.com/assets/resources/images/DDO-Experiments/4.4_UPS_leaf.svg');\
 						height: 23px;\
 						width: 20px;\
 						display: inline-block;	\
