@@ -12,10 +12,11 @@
 						background-repeat :no-repeat;\
 						background-size :16px;\
 					}\
-					.background-add {\
-                        background-color: #dad9b9;\
-                        margin: -5px -21px 0 -21px;\
-                        padding: 5px 0px 5px 21px;\
+                    .background-add {\
+                        border-radius : 5px;\
+                        background-color: #d4d3b3;\
+                        margin: -7px -15px 0 -15px;\
+                        padding: 6px 0px 0px 14px;\
 					}\
 					.switch-header-inline {\
 					   display :inline-block;\
@@ -26,14 +27,24 @@
 						margin-top: 0px;\
     					padding-left: 5px;\
 					}\
-					.detail-label-summary {\
+                    .detail-label-summary {\
+                        margin-left: 15px;\
 						padding-left: 500px;\
     					margin-top: -30px;\
     					border: 0px;\
 					}\
 					.section-checkbox-label {\
 						padding-left: 25px !important;\
-					}\
+                    }\
+                    carbon-neutral-option details p{\
+                        margin-right: 5px;\
+                    }\
+                    carbon-neutral-option switch-header strong{\
+                        font-size: 0.95em;\
+                    }\
+                    section base-option label{\
+                        padding-left: 25px !important;\
+                    }\
                     </style>";
 
         $("head").append(css);
