@@ -117,7 +117,7 @@
             $("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']").closest('div').addClass('background-add');
             $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Interested in shipping more sustainably?').addClass('carbon-neutral-text');
             $(labelNode).find('switch-header').addClass('switch-header-inline');
-            $(labelNode).find('switch-header').closest('div').append('<p style="font-size:0.95em;">Select UPS carbon neutral and support environmental projects that counterbalance the emissions associated with shipping your package. Up to $0.20 for domestic US shipments. Up to $0.75 for international shipments.</p>');
+            $(labelNode).find('switch-header').closest('div').append('<p style="font-size:0.95em;">Through UPS carbon neutral, you\'re supporting environmental projects that counterbalance the emissions associated with shipping your package. Up to $0.20 for domestic US shipments. Up to $0.75 for international shipments.</p>');
             $('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');
         }
 
