@@ -396,7 +396,7 @@
             function dayOfWeekAsInteger(day) {
                 return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][day];
             }
-            return dayOfWeekAsInteger(newDate.getDay()) + " " + newDate.getMonth() + "/" + newDate.getDate();
+            return dayOfWeekAsInteger(newDate.getDay()) + " " + (newDate.getMonth() + 1) + "/" + newDate.getDate();
         }
 
         /**
