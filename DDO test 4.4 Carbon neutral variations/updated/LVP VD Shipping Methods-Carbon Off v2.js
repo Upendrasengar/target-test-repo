@@ -43,7 +43,7 @@
                     carbon-neutral-option details p{\
                         margin-right: 5px;\
                     }\
-                    section base-option label{\
+                    shipment-options section base-option label{\
                         padding-left: 25px !important;\
                     }\
                     </style>";

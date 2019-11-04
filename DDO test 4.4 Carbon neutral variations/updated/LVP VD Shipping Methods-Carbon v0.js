@@ -42,7 +42,7 @@
                     carbon-neutral-option switch-header strong{\
                         font-size: 0.95em;\
                     }\
-                    section base-option label{\
+                    shipment-options section base-option label{\
                         padding-left: 25px !important;\
                     }\
                     </style>";

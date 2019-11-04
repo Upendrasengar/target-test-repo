@@ -29,7 +29,7 @@
     					padding-left: 5px;\
 					}\
                     .detail-label-summary {\
-                        margin-left: 15px;\
+                        margin-left: -40px;\
 						padding-left: 500px;\
     					margin-top: -30px;\
     					border: 0px;\
@@ -46,7 +46,7 @@
                      carbon-neutral-option switch-header strong,carbon-neutral-option details summary{\
                         font-size: 0.95em !important;\
                     }\
-                     section base-option label{\
+                    shipment-options section base-option label{\
                         padding-left: 25px !important;\
                     }\
                     </style>";
