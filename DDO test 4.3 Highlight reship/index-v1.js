@@ -23,10 +23,6 @@
                 height: 50px;
                 background-size: 50px;
             }
-            a.fRight {
-                float: right;
-                margin-right: 36px;
-            }
             </style>`
         );
 
