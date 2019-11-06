@@ -55,7 +55,7 @@
 
         attachObserver();
 
-        var hasSetEvent = false, hasSelected = null;
+        var hasSetEvent = false, hasSelected = null , isCancelled = null;
 
         function attachObserver() {
             var target = document.querySelector('body');
@@ -67,9 +67,10 @@
             var callback = function (mutations, observer) {
                 if (document.querySelector("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']")) {
                     setTimeout(function () {
-                        if ($("#nbsCarbonNeutralOptionBaseOptionSwitch").length && hasSelected != $("#nbsCarbonNeutralOptionBaseOptionSwitch").is(":checked")) {
+                        if ($("#nbsCarbonNeutralOptionBaseOptionSwitch").length && hasSelected != $("#nbsCarbonNeutralOptionBaseOptionSwitch").is(":checked") || isCancelled) {
                             $("#nbsCarbonNeutralOptionBaseOptionSwitch").click();
                             hasSelected = true;
+                            isCancelled = false;
                             if (!hasSetEvent) {
                                 $(document).on("change", "#nbsCarbonNeutralOptionBaseOptionSwitch", function (e) {
                                     hasSelected = e.target.checked;
@@ -126,6 +127,14 @@
             $(labelNode).find('switch-header').addClass('switch-header-inline');
             $(labelNode).find('switch-header>strong').addClass('carbon-neutral-text');
             $('shipment-options common-switch input[type="checkbox"]+label').addClass('section-checkbox-label');
+        }
+
+        document.addEventListener("click", cancelShipmentHandler, true);
+
+        function cancelShipmentHandler(event) {
+            if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {                
+                isCancelled = true;
+            }
         }
 
         window.carbonNeutralVariation = true;

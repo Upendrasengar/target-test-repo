@@ -37,7 +37,7 @@
                 subtree: true
             };
             var callback = function(mutations, observer) {
-               if (document.querySelector("payment promo-code label[for='nbsPromoCodeUsePromoCodeSwitch']")) {
+               if (location.href.indexOf('promoCodeAlias') < 0 && document.querySelector("payment promo-code label[for='nbsPromoCodeUsePromoCodeSwitch']")) {
                     setTimeout(function() {
                         if (window.promotionalCode) {
                             applyPromoCodeInPayments();
@@ -50,12 +50,14 @@
         }
 
         function openPromotionalModal() {
-            var modal = document.getElementById("promotional_modal");
-            if (!modal) {
-                $('body').append(modalHtml);
-                modal = document.getElementById("promotional_modal");
-            }
-            modal.style.display = "block";
+            if(displayModal()) {
+                var modal = document.getElementById("promotional_modal");
+                if (!modal) {
+                    $('body').append(modalHtml);
+                    modal = document.getElementById("promotional_modal");
+                }
+                modal.style.display = "block";
+            }           
         }
 
         $(document).on("click", "a", function(event) {
@@ -113,6 +115,18 @@
             else {
                 return new Event("input");
             }
+        }
+
+        function displayModal() {
+            var flag = false;
+            if(location.href.indexOf('guided') >0)  {
+                if(location.href.indexOf('ship/guided/pickup-service') >0 || location.href.indexOf('ship/guided/options') >0 || location.href.indexOf('ship/guided/payment') >0) {
+                    flag =  true;
+                }                                
+            } else if(location.href.indexOf('single-page') >0) {
+                flag = true;
+            } 
+            return flag;
         }
         
         window.hasPromotionalCodeSet = true;

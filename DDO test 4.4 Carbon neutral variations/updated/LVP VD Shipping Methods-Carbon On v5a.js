@@ -55,7 +55,7 @@
 
         attachObserver();
 
-        var hasSetEvent = false, hasSelected = null;
+        var hasSetEvent = false, hasSelected = null , isCancelled = null;
 
         function attachObserver() {
             var target = document.querySelector('body');
@@ -67,9 +67,10 @@
             var callback = function (mutations, observer) {
                 if (document.querySelector("input[id='nbsCarbonNeutralOptionBaseOptionSwitch']")) {
                     setTimeout(function () {
-                        if ($("#nbsCarbonNeutralOptionBaseOptionSwitch").length && hasSelected != $("#nbsCarbonNeutralOptionBaseOptionSwitch").is(":checked")) {
+                        if ($("#nbsCarbonNeutralOptionBaseOptionSwitch").length && hasSelected != $("#nbsCarbonNeutralOptionBaseOptionSwitch").is(":checked") || isCancelled) {
                             $("#nbsCarbonNeutralOptionBaseOptionSwitch").click();
                             hasSelected = true;
+                            isCancelled = false;
                             if (!hasSetEvent) {
                                 $(document).on("change", "#nbsCarbonNeutralOptionBaseOptionSwitch", function (e) {
                                     hasSelected = e.target.checked;
@@ -129,6 +130,14 @@
             $(labelNode).find('switch-header>strong').text('UPS carbon neutral - Thanks for shipping with the environment in mind!').addClass('carbon-neutral-text');
             $(labelNode).find('switch-header').addClass('switch-header-inline');
             $(labelNode).find('switch-header').closest('div').append('<details close><summary class="detail-label-summary"><span id="carbonNeutralLearnMore" style="text-decoration: underline;">Learn More</span></summary><p style="font-size:0.92em;">Select UPS carbon neutral and support environmental projects that counterbalance the emissions associated with shipping your package.Up to $.20 for domestic US shipments.Up to $.75 for international shipments</p></details>');
+        }
+
+        document.addEventListener("click", cancelShipmentHandler, true);
+
+        function cancelShipmentHandler(event) {
+            if (event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4") {                
+                isCancelled = true;
+            }
         }
 
         window.carbonNeutralVariation = true;
