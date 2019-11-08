@@ -41,7 +41,7 @@
                     setTimeout(function() {
                         if (window.promotionalCode) {
                             applyPromoCodeInPayments();
-                        }
+                        }  
                     }, 500);
                 }
             };
@@ -49,28 +49,21 @@
             detailsMutationObserver.observe(target, config);
         }
 
-        function openPromotionalModal() {
-            var logged_in = true;
+        function openPromotionalModal() {           
             var modal = document.getElementById("promotional_modal");
             if (!modal) {
                 $('body').append(modalHtml);
                 modal = document.getElementById("promotional_modal");
             }
-            modal.style.display = "block";
-
-            logged_in = window.data_obj && window.data_obj.isLoggedIn || logged_in;
-
-            if(logged_in){
-                modal.querySelector('#promotional_offer_paragraph').innerText = "Signed in user";
-            }  
+            modal.style.display = "block";          
         }
 
         $(document).on("click", "a", function(event) {
             if (location.href.indexOf('promoCodeAlias') < 0 && displayModal() && event.target.tagName === 'A') {
                 if (!window.showAlertMessage && event.target.getAttribute('href') && event.target.getAttribute('href').length > 1) {
-                    if (event.target.innerText != 'Log In' || event.target.innerText != 'Cancel Shipment') {
-                        window.showAlertMessage = true;
+                    if (event.target.innerText != 'Log In' || event.target.innerText != 'Cancel Shipment' || event.target.innerText  != 'Log Out') {                      
                         if (!event.target.getAttribute('target') || event.target.getAttribute('target') != '_blank') {
+                            window.showAlertMessage = true;
                             openPromotionalModal();
                             event.preventDefault();
                         }
@@ -84,11 +77,12 @@
         });
 
         $(document).on("click", "#applyPromotionalCode", function(event) {
-            window.promotionalCode = "EASY";
-            var expirationDate = new Date();
-            expirationDate.setTime(expirationDate.getTime() + 1 * 3600 * 1000);
-            docCookies.setItem("promotionalCode", window.promotionalCode, expirationDate.toUTCString(), "/", ".ups.com", true);
-            closePromotionalModal();
+            var logged_in = false;
+            logged_in = window.utag.data.user_login_state && window.utag.data.user_login_state === "logged in" || logged_in;
+            window.promotionalCode = "EASY";          
+            event.target.disabled = true;                                   
+            closePromotionalModal();  
+            //display notification message                      
         });
 
         function closePromotionalModal() {
@@ -106,20 +100,24 @@
                     if (input && $('#nbsApplyOrRemovePromoCodeBtn').length == 1) {
                         input.value = window.promotionalCode;
                         input.dispatchEvent(getEvent());
-                        document.addEventListener("change", cancelShipmentHandler, true);                        
-                        setTimeout(function(){
-                           $('#nbsApplyOrRemovePromoCodeBtn').click(); 
-                        },300);
-                        function cancelShipmentHandler(event) {
+                       
+                        document.removeEventListener("change", cancelShipmentHandlerPromo , true);
+                        document.addEventListener("change", cancelShipmentHandlerPromo, true);  
+                        function cancelShipmentHandlerPromo(event) {
                             if (event.target.id == "nbsPromoCodeUsePromoCodeSwitch" || event.target.id == "nbsCancelShipmentWarningYes" || event.target.id == "nbsButtonDrawer4" || event.target.id === "nbsApplyOrRemovePromoCodeBtn") {
                                 window.promotionalCode = null;
                             }
-                        }
-                        document.addEventListener("click", function(event) {
+                        }                                              
+                        
+                        $('#nbsApplyOrRemovePromoCodeBtn').click();                                             
+                        
+                        document.removeEventListener("click", cancelShipmentHandler , true);
+                        document.addEventListener("click", cancelShipmentHandler , true);                        
+                        function cancelShipmentHandler(event) {
                             if (event.target.parentElement && event.target.parentElement.id === "nbsApplyOrRemovePromoCodeBtn" && event.target.classList.contains('ups-icon-minuscircle')) {
                                 window.promotionalCode = null;
                             }
-                        }, true);
+                        }   
                     }
 
                 } else if (!input) {
