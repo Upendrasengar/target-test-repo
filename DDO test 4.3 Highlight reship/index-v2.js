@@ -15,17 +15,16 @@
         );
 
         var mt = new MutationObserver(function (mType, observer) {
-            setTimeout(function () {
-                var reshipAnker = document.querySelector("#reshipBtn");
-                if (!reshipAnker) {
-                    var ele = $("#nbsInfoBannerNavToUisLink").parent();
-                    ele.append(html);
-                    $("#nbsInfoBannerNavToUisLink").appendTo($("em[class^=ng-tns]").parent());
-                    // observer.disconnect();
-                } else {
-                    //console.debug("reshipBtn not loaded........");
-                }
-            }, 0);
+            var reshipAnker = document.querySelector("#reshipBtn");
+            if (!reshipAnker) {
+                setTimeout(function () {
+                    if(!document.querySelector("#reshipBtn")){
+                        var ele = $("#nbsInfoBannerNavToUisLink").parent();
+                        ele.append(html);
+                        $("#nbsInfoBannerNavToUisLink").appendTo($("em[class^=ng-tns]").parent());
+                    }
+                }, 100);
+            }
         });
 
         mt.observe(document.querySelector("body"), {
